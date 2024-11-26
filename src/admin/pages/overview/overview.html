@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ภาพรวมห้องพัก</title>
+    <link rel="icon" type="image/x-icon" href="../../../imgs/logoIcon.png">
+    <link rel="stylesheet" href="../../../../public/css/main.css">
+    <link rel="stylesheet" href="../../../../public/css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <?php include("../../layouts/header.php"); ?>
+    <?php include("../../layouts/sidebar.php"); ?>
+    <div class="breadcrumbsAdmin">
+        <a href="#">หน้าแรก</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a>ภาพรวมห้องพัก</a>
+    </div>
+    <style>
+        .guesthouse {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            height: calc(100% - 50px);
+            overflow-y: scroll;
+        }
+
+        .floor {
+            /* background-color: red; */
+            width: 100%;
+            display: flex;
+            gap: 10px;
+        }
+        .room {
+            background: var(--sky);
+            box-shadow: var(--shadow);
+            border-radius: 6px;
+            padding: 10px;
+            width: 160px;
+            height: 100%;
+        }
+
+        .bed {
+            
+            i {
+                color:#FFFFFF; 
+                font-size: 26px;
+                cursor: pointer;
+            }
+        }
+    </style>
+    <main class="containerAdmin">
+        <h2 style="margin-bottom:10px;">ภาพรวมห้องพัก</h2>
+        <div class="guesthouse">
+            <h3>Floor 4</h3>
+            <div class="floor">
+                <div class="room">
+                    <h3>401</h3>
+                    <p>ห้องเดี่ยวแอร์</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>402</h3>
+                    <p>ห้องเดี่ยวพัดลม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>403</h3>
+                    <p>ห้องรวม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>404</h3>
+                    <p>ห้องรวม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>405</h3>
+                    <p>ห้องเดี่ยวแอร์</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+            </div>
+            <h3>Floor 3</h3>
+            <div class="floor">
+                <div class="room">
+                    <h3>301</h3>
+                    <p>ห้องเดี่ยวแอร์</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>302</h3>
+                    <p>ห้องรวม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>303</h3>
+                    <p>ห้องรวม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>                        
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>304</h3>
+                    <p>ห้องเดี่ยวพัดลม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+            </div>
+            <h3>Floor 2</h3>
+            <div class="floor">
+                <div class="room">
+                    <h3>201</h3>
+                    <p>ห้องเดี่ยวพัดลม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>202</h3>
+                    <p>ห้องรวม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>203</h3>
+                    <p>ห้องเดี่ยวพัดลม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>204</h3>
+                    <p>ห้องเดี่ยวพัดลม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+                <div class="room">
+                    <h3>205</h3>
+                    <p>ห้องเดี่ยวแอร์</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+            </div>
+            <h3>Floor 1</h3>
+            <div class="floor">
+                <div class="room">
+                    <h3>102</h3>
+                    <p>ห้องเดี่ยวพัดลม</p>
+                    <div class="bed">
+                        <i class='bx bxs-bed'></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script src="../../js/script.js"></script>
+</body>
+</html>

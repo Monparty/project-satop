@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตรวจสอบข้อมูลการชำระเงิน</title>
+    <link rel="icon" type="image/x-icon" href="../../../imgs/logoIcon.png">
+    <link rel="stylesheet" href="../../../css/main.css">
+    <link rel="stylesheet" href="../../../css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .boxPayment {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        
+        .formBtn {
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <?php include("../../layouts/header.php"); ?>
+    <?php include("../../layouts/sidebar.php"); ?>
+    <div class="breadcrumbsAdmin">
+        <a href="../dashboard/dashboard.php">หน้าแรก</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a href="bookingList.php">ข้อมูลการจองห้องพัก</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a>ตรวจสอบข้อมูลการชำระเงิน</a>
+    </div>
+    <form action="bookingApprove.php" method="post">
+        <input type="hidden" name="id" value="<?=$booking_id;?>">
+        <main class="containerAdmin">
+            <section class="formSection">
+                <h2 style="margin-bottom:10px;">ตรวจสอบข้อมูลการชำระเงิน</h2>
+                <div class="form">
+                    <div class="headersection">
+                        <i class='bx bx-info-circle'></i>
+                        <h4>รายละเอียดการชำระเงิน</h4>
+                    </div>
+                    <div class="boxPayment">
+                        <div class="slipImage" <?php echo ($upload_slip_at=='') ? 'style="visibility: hidden;"' : '';?>>
+                            <?=$showimg[$i];?>
+                        </div>
+                        <div class="paymentDetail borderBox">
+                            <div class="form">
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>ชื่อผู้เข้าพัก</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['booker_name'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>อีเมล</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['email'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>เบอร์โทร</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['phone'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>วันที่เช็คอิน</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['check_in_date'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>วันที่เช็คเอาท์</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['check_out_date'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>ประเภทห้องพัก</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['name'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>ราคาห้องพัก</h4>
+                                    </div>
+                                    <div class="formInput w300">
+                                        <input type="number" value="<?=$fetch['price'];?>" readonly>
+                                        <h5 class="formInputDesc">หน่วยเป็นบาท</h5>
+                                    </div>
+                                </div>
+                                <div class="formRow valignTop">
+                                    <div class="formTitle">
+                                        <h4>หมายเหตุ</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <textarea name="remark"><?=$fetch['remark'];?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formBtn">
+                                <button type="submit" name="cancel" class="button orange" <?php echo ($booking_status!='ชำระเงินเรียบร้อย / รอตรวจสอบ') ? 'style="display: none;"' : '';?>> การชำระเงินไม่ถูกต้อง</button>
+                                <button type="submit" name="update" class="button green" <?php echo ($booking_status!='ชำระเงินเรียบร้อย / รอตรวจสอบ') ? 'style="display: none;"' : '';?>> ยืนยันการชำระเงิน</button>
+                                <button type="button" class="button gray w100" onclick="history.back()">ยกเลิก</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </form>
+    <script src="../../js/script.js"></script>
+</body>
+</html>

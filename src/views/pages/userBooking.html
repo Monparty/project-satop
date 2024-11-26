@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>การจองห้องพัก</title>
+    <link rel="icon" type="image/x-icon" href="../../imgs/logoIcon.png" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      main {
+        display: grid;
+        row-gap: 30px;
+      }
+
+      section {
+        margin-bottom: 60px;
+      }
+
+      .boxContainer {
+        display: grid;
+        grid-template-columns: 2fr 6fr;
+        column-gap: 20px;
+      }
+
+      .leftBar {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        & a {
+          display: flex;
+          align-items: center;
+          padding: 5px;
+          gap: 10px;
+          font-size: 16px;
+          border-bottom: 1px solid var(--gray);
+
+          & i {
+            font-size: 22px;
+            color: var(--blue);
+          }
+        }
+      }
+
+      .leftBarActive {
+        background: var(--blue);
+        color: var(--white);
+        border-radius: 5px;
+
+        & i {
+          color: var(--white) !important;
+        }
+      }
+
+      .container__lists {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+      }
+
+      .roomContainer {
+        display: grid;
+        grid-template-columns: 1fr 8fr 4fr;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+
+        & .roomCheckDate {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+
+      .boxHelp {
+        display: grid;
+        gap: 5px;
+      }
+
+      @media screen and (max-width: 576px) {
+        .boxContainer {
+          grid-template-columns: 1fr;
+          row-gap: 30px;
+        }
+
+        .borderBox {
+          grid-template-columns: 1fr;
+          width: 500px;
+          row-gap: 10px;
+          text-align: center;
+
+          & .helpBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & a {
+              width: 200px;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <?php include("../layouts/header.php"); ?>
+    <?php include("../layouts/navbar.html"); ?>
+    <?php include("../layouts/sidebar.html"); ?>
+
+    <main class="container">
+      <div class="breadcrumbs">
+        <a style="color: var(--gray)" href="homePage.php">หน้าแรก</a>
+        <i class="bx bx-chevron-right" style="color: var(--gray)"></i>
+        <a>การจองห้องพัก</a>
+      </div>
+
+      <section>
+        <h2 style="margin-bottom: 10px">การจองห้องพัก</h2>
+        <div class="boxContainer">
+          <div class="leftBar">
+            <a href="userAccount.php"><i class="bx bx-user"></i> ข้อมูลบัญชี</a>
+            <a href="userBooking.php" class="leftBarActive"><i class="bx bx-book-bookmark"></i> การจองห้องพัก</a>
+            <a href="userFoodList.php"><i class='bx bx-bowl-rice'></i> สั่งอาหาร</a>
+            <a href="userMeetRoomBooking.php"><i class='bx bx-building-house'></i> การจองห้องประชุม</a>
+            <a href="logout.php"><i class="bx bx-power-off"></i> ออกจากระบบ</a>
+          </div>
+          <div class="container__lists">
+            <div class="boxHelp borderBox">
+                <h4>ประสบปัญหาใดๆ เราพร้อมให้ความช่วยเหลือ</h4>
+                <h5>
+                  ติดต่อที่พักหรือฝ่ายลูกค้าสัมพันธ์ของอโกด้า
+                  พร้อมรับคำตอบอย่างรวดเร็วจากเรา
+                  รวมถึงบริการอีกมากมายที่ท่านสามารถทำได้ด้วยตนเองง่ายๆ
+                </h5>
+                <div class="helpBtn">
+                  <a href="#" class="button">ติดต่อฝ่ายลูกค้าสัมพันธ์</a>
+                </div>
+            </div>
+            <h2>รายละเอียดการจอง</h2>
+            <?php
+            foreach ($query as $i=>$fetch) { ?>
+            <a href="<?php if ($fetch['booking_status'] === 'รอชำระเงิน') { ?>
+              paymentAfter.php?booking_id=<?php echo $fetch['booking_id'] . '&room_id=' . $fetch['room_id'];?>
+              <?php } else if ($fetch['booking_status'] === 'ข้อมูลการชำระเงินไม่ถูกต้อง') { ?>
+                paymentAfter.php?booking_id=<?php echo $fetch['booking_id'] . '&room_id=' . $fetch['room_id'];?>
+                <?php } else if ($fetch['booking_status'] === 'ชำระเงินเรียบร้อย') { ?>
+                userBookingDetail.php?booking_id=<?php echo $fetch['booking_id'] . '&room_id=' . $fetch['room_id']?>
+                <?php } else if ($fetch['booking_status'] === 'เช็คอิน') { ?>
+
+                <?php } else if ($fetch['booking_status'] === 'เช็คเอาท์') { ?>
+
+                <?php } else if ($fetch['booking_status'] === 'ชำระเงินเรียบร้อย / รอตรวจสอบ') { ?>
+                  
+                <?php } else { ?>
+                  
+              <?php } ?>">
+                <div class="borderBox roomContainer">
+                    <?=$showimg[$i];?>
+                <div class="roomItem">
+                  <h4 class="bold"><?=$fetch["name"];?></h4>
+                  <div class="roomCheckDate">
+                    <h4>วันที่เช็คอิน : <?=$fetch["check_in_date"];?></h4>
+                    <i class="bx bx-right-arrow-alt"></i>
+                    <h4>วันที่เช็คเอาท์ : <?=$fetch["check_out_date"];?></h4>
+                  </div>
+                  <h4>฿ <?=number_format($fetch["price"]);?></h4>
+                </div>
+                <div class="bookStatus">
+                  <h4 class="bold" style="color: var(--blue); text-align: center;"><?=$fetch["booking_status"];?></h4>
+                </div>
+              </div>
+            </a>
+            <?php } ?>
+          </div>
+        </div>
+      </section>
+    </main>
+    <?php include("../layouts/footer.html"); ?>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>

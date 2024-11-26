@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="../../../../public/imgs/logosatop.png">
+    <link rel="stylesheet" href="../../../../public/css/main.css">
+    <link rel="stylesheet" href="../../../../public/css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .dashboardContainer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            justify-content: space-between;
+            margin-bottom: 4rem;
+        }
+
+        .dashCard {
+            display: grid;
+            row-gap: 20px;
+            background: var(--sky);
+            padding: 10px;
+            border-radius: 5px;
+
+            &:hover {
+                box-shadow: var(--shadow);
+            }
+
+            & .dashInfo {
+                display: flex;
+                align-items: center;
+                column-gap: 20px;
+                justify-content: space-between;
+                color: var(--white);
+
+                & i {
+                    font-size: 58px;
+                    color: var(--blue);
+                }
+
+                & h4 {
+                    white-space: nowrap;
+                }
+            }
+            
+            & .dashBtn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                & i {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .chart {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <?php include("../../layouts/header.php"); ?>
+    <?php include("../../layouts/sidebar.php"); ?>
+    <div class="breadcrumbsAdmin">
+        <a href="#">หน้าแรก</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a>Dashboard</a>
+    </div>
+    <main class="containerAdmin">
+        <div class="dashboardContainer">
+            <div class="dashCard">
+                <div class="dashInfo">
+                    <div class="boxInnfo">
+                        <h1 class="bold count"><?=$total_room?></h1>
+                        <h4>ข้อมูลการจองห้องพัก</h4>
+                    </div>
+                    <div class="boxIcon">
+                        <i class='bx bx-book-bookmark'></i>
+                    </div>
+                </div>
+                <div class="dashBtn">
+                    <a href="../../pages/bookings/bookingList.php" class="buttonOutline">ดูรายละเอียด <i class='bx bxs-log-in-circle'></i></a>
+                </div>
+            </div>
+            <div class="dashCard">
+                <div class="dashInfo">
+                    <div class="boxInnfo">
+                        <h1 class="bold count"><?=$total_meet?></h1>
+                        <h4>ข้อมูลห้องพัก</h4>
+                    </div>
+                    <div class="boxIcon">
+                        <i class='bx bx-building-house'></i>
+                    </div>
+                </div>
+                <div class="dashBtn">
+                    <a href="../../pages/meetRoomBookings/bookingList.php" class="buttonOutline">ดูรายละเอียด <i class='bx bxs-log-in-circle'></i></a>
+                </div>
+            </div>
+            <div class="dashCard">
+                <div class="dashInfo">
+                    <div class="boxInnfo">
+                        <h1 class="bold count"><?=$total_user?></h1>
+                        <h4>ข้อมูลสมาชิก</h4>
+                    </div>
+                    <div class="boxIcon">
+                        <i class='bx bx-user'></i>
+                    </div>
+                </div>
+                <div class="dashBtn">
+                    <a href="../../pages/users/userList.php" class="buttonOutline">ดูรายละเอียด <i class='bx bxs-log-in-circle'></i></a>
+                </div>
+            </div>
+            <div class="dashCard" style="background: var(--gray);">
+                <div class="dashInfo">
+                    <div class="boxInnfo">
+                        <h1 class="bold count">18</h1>
+                        <h4>การแจ้งเตือน</h4>
+                    </div>
+                    <div class="boxIcon">
+                        <i class='bx bx-envelope'></i>
+                    </div>
+                </div>
+                <div class="dashBtn">
+                    <a href="#" class="button">ดูรายละเอียด <i class='bx bxs-log-in-circle'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="chart">
+            <canvas id="myChart" style="max-width:50%"></canvas>
+            <canvas id="myChart2" style="max-width:50%"></canvas>
+        </div>
+    </main>
+
+    <script src="../../js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+    $('.count').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 2000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+
+
+    const xValues = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
+    const yValues = [12, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65];
+    const barColors = ["#e84e40", "#72d572", "#4db6ac", "#ff8a65", "#F6d8B6", "#FF99FF", "#FF9999", "#CC99CC", "#99CCCC", "#999999", "#66FFCC", "#FFE4B5"];
+
+    new Chart("myChart", {
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+        }]
+    },
+    options: {
+        legend: {display: false},
+        title: {
+        display: true,
+        text: "ข้อมูลการจองห้องพักในปี 2567"
+        }
+    }
+    }); 
+
+    //
+    const xValues1 = ["ห้อง Private พัดลม", "ห้อง Private แอร์", "ห้องรวม"];
+    const yValues2 = [20, 30, 60];
+    const barColors3 = [
+    "#b91d47",
+    "#00aba9",
+    "#2b5797",
+    ];
+
+    new Chart("myChart2", {
+    type: "pie",
+    data: {
+        labels: xValues1,
+        datasets: [{
+        backgroundColor: barColors3,
+        data: yValues2
+        }]
+    },
+    options: {
+        title: {
+        display: true,
+        text: "ประเภทห้องพักที่มีจำนวนการจองมากที่สุด"
+        }
+    }
+    });
+            
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แก้ไขข้อมูลสมาชิก</title>
+    <link rel="icon" type="image/x-icon" href="../../../imgs/logoIcon.png">
+    <link rel="stylesheet" href="../../../css/main.css">
+    <link rel="stylesheet" href="../../../css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <?php include("../../layouts/header.php"); ?>
+    <?php include("../../layouts/sidebar.php"); ?>
+    <div class="breadcrumbsAdmin">
+        <a href="../dashboard/dashboard.php">หน้าแรก</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a href="userList.php">จัดการสมาชิก</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a>แก้ไขข้อมูลสมาชิก</a>
+    </div>
+    <form action="editUser.php" method="post">
+        <input type="hidden" name="user_id" value="<?=$user_id;?>">
+        <main class="containerAdmin">
+            <section class="formSection">
+                <h2 style="margin-bottom:10px;">แก้ไขข้อมูลสมาชิก</h2>
+                <div class="form">
+                    <div class="headersection">
+                        <i class='bx bx-info-circle'></i>
+                        <h4>ข้อมูลทั่วไป</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ชื่อ - นามสกุล <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput">
+                            <input type="text" name="name" value="<?=$name;?>" required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>อีเมล <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput">
+                            <input type="email" name="email" value="<?=$email;?>" required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เบอร์โทร <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="phone_number" value="<?=$phone_number;?>" required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>Username <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput">
+                            <input type="text" name="username" value="<?=$username;?>" required>
+                        </div>
+                    </div>
+                    <div class="formRow" style="display: none;">
+                        <div class="formTitle">
+                            <h4>รหัสผ่าน</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="password" name="password" value="">
+                        </div>
+                    </div>
+                    <div class="formRow" style="display: none;">
+                        <div class="formTitle">
+                            <h4>ยืนยันรหัสผ่าน</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="password" name="confirm_password" value="">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เพศ</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <select name="gender">
+                                <option value="1" <?php echo ($gender=='1') ? 'selected' : ''; ?>>ชาย</option>
+                                <option value="2" <?php echo ($gender=='2') ? 'selected' : ''; ?>>หญิง</option>
+                                <option value="3" <?php echo ($gender=='3') ? 'selected' : ''; ?>>ไม่ระบุ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>วันเกิด</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="date" name="birth_date" value="<?=$birth_date;?>">
+                        </div>
+                    </div>
+                    <div class="formRow valignTop">
+                        <div class="formTitle">
+                            <h4>ที่อยู่</h4>
+                        </div>
+                        <div class="formInput">
+                            <textarea name="address"><?=$address;?></textarea>
+                        </div>
+                    </div>
+                    <div class="headersection">
+                        <i class='bx bx-user-pin'></i>
+                        <h4>สิทธิการเข้าถึง</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>สิทธิการเข้าถึง <span class="force">*</span></h4>
+                        </div>
+                        <div class="boxCheckbox">
+                            <input type="radio" id="1" name="position[]" value="user" <?php echo ($position=='user') ? 'checked' : ''; ?>>
+                            <label for="1">user</label>
+                            <input type="radio" id="2" name="position[]" value="employee" <?php echo ($position=='employee') ? 'checked' : ''; ?>>
+                            <label for="2">employee</label>
+                            <input type="radio" id="3" name="position[]" value="admin" <?php echo ($position=='admin') ? 'checked' : ''; ?>>
+                            <label for="3">admin</label>
+                        </div>
+                    </div>
+                    <div class="headersection">
+                        <i class='bx bx-list-check'></i>
+                        <h4>สถานะ</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>สถานะ <span class="force">*</span></h4>
+                        </div>
+                        <div class="boxCheckbox">
+                            <input type="radio" name="status[]" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
+                            <label for="">ใช้งาน</label>
+                            <input type="radio" name="status[]" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
+                            <label for="">ไม่ใช้งาน</label>
+                        </div>
+                    </div>
+                    <div class="formBtn">
+                        <button type="submit" name="update" class="button green w100"><i class='bx bx-save'></i> บันทึก</button>
+                        <button type="button" class="button gray w100" onclick="history.back()">ยกเลิก</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </form>
+    <script src="../../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลการสั่งอาหาร</title>
+    <link rel="icon" type="image/x-icon" href="../../../imgs/logoIcon.png">
+    <link rel="stylesheet" href="../../../css/main.css">
+    <link rel="stylesheet" href="../../../css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .boxPayment {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        
+        .formBtn {
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <?php include("../../layouts/header.php"); ?>
+    <?php include("../../layouts/sidebar.php"); ?>
+    <div class="breadcrumbsAdmin">
+        <a href="../dashboard/dashboard.php">หน้าแรก</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a href="orderFoodList.php">จัดการสั่งอาหาร</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a>ข้อมูลการสั่งอาหาร</a>
+    </div>
+    <form action="orderFoodManage.php" method="post">
+        <input type="hidden" name="order_id" value="<?=$fetch['order_id'];?>">
+        <main class="containerAdmin">
+            <section class="formSection">
+                <h2 style="margin-bottom:10px;">ข้อมูลการสั่งอาหาร</h2>
+                <div class="form">
+                    <div class="headersection">
+                        <i class='bx bx-info-circle'></i>
+                        <h4>รายละเอียดการสั่งอาหาร</h4>
+                    </div>
+                    <div class="boxPayment">
+                        <div class="slipImage" <?php echo ($fetch['payment_at']=='') ? 'style="visibility: hidden;"' : '';?>>
+                            <?=$showimg[$i];?>
+                        </div>
+                        <div class="paymentDetail borderBox">
+                            <div class="form">
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>ห้องที่สั่ง</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['room_number'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>ชื่อผู้สั่ง</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetchUser['username'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>เบอร์โทร</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetchUser['phone_number'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>เมนูอาหาร</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['food_name'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>ราคาอาหาร</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['food_price'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>จำนวน</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['order_quantity'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>ราคารวม</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['sum_price'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow">
+                                    <div class="formTitle">
+                                        <h4>สั่งอาหารเมื่อ</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <input type="text" value="<?=$fetch['order_date'];?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="formRow valignTop">
+                                    <div class="formTitle">
+                                        <h4>หมายเหตุสั่งอาหาร</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <textarea name="" readonly><?=$fetch['order_remark'];?></textarea>
+                                    </div>
+                                </div>
+                                <div class="formRow valignTop">
+                                    <div class="formTitle">
+                                        <h4>หมายเหตุ</h4>
+                                    </div>
+                                    <div class="formInput">
+                                        <textarea name="payment_remark"><?=$fetch['payment_remark'];?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="formBtn">
+                            <?php if ($fetch['order_status'] === "ชำระเงินเรียบร้อย / รอตรวจสอบ") { ?>
+                                <button type="submit" name="cancel" class="button orange">การชำระเงินไม่ถูกต้อง</button>
+                                <button type="submit" name="update" class="button green">ยืนยันการชำระเงิน</button>
+                            <?php } else if ($fetch['order_status'] === "กำลังจัดเตรียมอาหาร") { ?>
+                                <button type="submit" name="delivery" class="button green"> ยืนยันการส่งอาหาร</button>
+                            <?php } else { ?>
+                                
+                            <?php } ?>
+                                <button type="button" class="button gray w100" onclick="history.back()">ยกเลิก</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </form>
+    <script src="../../js/script.js"></script>
+</body>
+</html>
