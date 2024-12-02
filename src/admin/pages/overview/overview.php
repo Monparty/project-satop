@@ -2,8 +2,19 @@
 include("../../../../config/config.php");
 session_start();
 
-$sql = " SELECT * FROM rooms";
+// loop ห้องพักทั้งหมด
+// ORDER BY DESC(มากไปหาน้อย), ASC(น้อยไปหามาก);
+$sql = "SELECT * FROM rooms ORDER BY floor DESC;";
 $query = mysqli_query( $c, $sql );
+
+$roomsByFloor = [];
+foreach ($query as $room) {
+    $floor = $room['floor'];
+    if (!isset($roomsByFloor[$floor])) {
+        $roomsByFloor[$floor] = [];
+    }
+    $roomsByFloor[$floor][] = $room;
+}
 
 // ลบข้อมูล
 if (isset($_REQUEST['delete'])) {

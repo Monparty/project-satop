@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $name = $_POST["name"];
   $bed = $_POST["bed"];
+  $floor = $_POST["floor"];
   $amountpeople = $_POST["amountpeople"];
   $room_number = $_POST["room_number"];
   $status = implode($_POST["status"]);
@@ -56,13 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //$sql = "INSERT INTO rooms (name, roomdesc, price, roomabout,  bed, amountpeople, facility1, facility2, facility3, facility4, facility5, facility6, facility7, facility8, room_number, status, createAt, image, image2, image3, image4, image5)
   //VALUES (:name, :roomdesc, :price, :roomabout, :bed, :amountpeople, :facility1, :facility2, :facility3, :facility4, :facility5, :facility6, :facility7, :facility8, :room_number, :status, CURRENT_TIMESTAMP, :image_base64, :image_base642, :image_base643, :image_base644, :image_base645)";
 
-  $sql = "INSERT INTO rooms (name, bed, amountpeople, room_number, status, createAt)
-  VALUES (:name, :bed, :amountpeople, :room_number, :status, CURRENT_TIMESTAMP)";
+  $sql = "INSERT INTO rooms (name, bed, floor, amountpeople, room_number, status, createAt)
+  VALUES (:name, :bed, :floor, :amountpeople, :room_number, :status, CURRENT_TIMESTAMP)";
 
 
   $stmt = $conn->prepare($sql);
   $stmt->bindParam(":name", $name);
   $stmt->bindParam(":bed", $bed);
+  $stmt->bindParam(":floor", $floor);
   $stmt->bindParam(":amountpeople", $amountpeople);
   $stmt->bindParam(":room_number", $room_number);
   $stmt->bindParam(":status", $status);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>จัดการห้องพัก</title>
-    <link rel="icon" type="image/x-icon" href="../../../imgs/logoIcon.png">
+    <link rel="icon" type="image/x-icon" href="../../../../public/imgs/logosatop.png">
     <link rel="stylesheet" href="../../../../public/css/main.css">
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -37,6 +37,8 @@
                     <tr>
                         <td width="6%">ลำดับ</td>
                         <td>ประเภทห้องพัก</td>
+                        <td width="12%">เลขห้องพัก</td>
+                        <td width="8%">ชั้น</td>
                         <td width="18%">วันที่บันทึก</td>
                         <td width="14%">สถานะ</td>
                         <td width="5%"></td>
@@ -50,12 +52,14 @@
                         <tr align="center">
                             <td><?=$count++;?></td>
                             <td align="left"><?=$fetch['name'];?></td>
+                            <td><?=$fetch['room_number'];?></td>
+                            <td><?=$fetch['floor'];?></td>
                             <td><?=date_format(date_create($fetch['createAT']), 'd/m/Y H:i:s')?></td>
                             <td><?=$fetch['status'];?></td>
                             <td align="left"><a title="แก้ไขข้อมูล" href="editRoom.php?id=<?=$fetch['room_id'];?>"><i class='bx bx-edit-alt'></i></a></td>
                             <td align="left"><a title="ลบรายการ" href="?delete=<?=$fetch['room_id'];?>"><i class='bx bx-trash'></i></a></td>
                         </tr>
-                    <?php } ?>
+                <?php } ?>
                 </tbody>
             </table>
         </div>

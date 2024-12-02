@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แก้ไขข้อมูลห้องพัก</title>
-    <link rel="icon" type="image/x-icon" href="../../../imgs/logoIcon.png">
+    <link rel="icon" type="image/x-icon" href="../../../../public/imgs/logosatop.png">
     <link rel="stylesheet" href="../../../../public/css/main.css">
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -40,6 +40,22 @@
                                 <option value="<?=$row['name'];?>"><?=$row['name'];?></option>
                                 <?php } ?>
                             </datalist>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ชั้น <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="floor" value="<?=$floor;?>" required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>หมายเลขห้องพัก <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="room_number" value="<?=$room_number;?>" required>
                         </div>
                     </div>
                     <div class="formRow" style="display: none;">
@@ -87,14 +103,6 @@
                         <div class="formInput w300">
                             <input type="number" name="amountpeople" value="<?=$amountpeople;?>" required>
                             <h5 class="formInputDesc">หน่วยเป็นคน</h5>
-                        </div>
-                    </div>
-                    <div class="formRow">
-                        <div class="formTitle">
-                            <h4>หมายเลขห้องพัก <span class="force">*</span></h4>
-                        </div>
-                        <div class="formInput w300">
-                            <input type="text" name="room_number" value="<?=$room_number;?>" required>
                         </div>
                     </div>
                     <!--
@@ -234,10 +242,10 @@
                             <h4>สถานะ <span class="force">*</span></h4>
                         </div>
                         <div class="boxCheckbox">
-                            <input type="radio" name="status[]" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
-                            <label for="">ใช้งาน</label>
-                            <input type="radio" name="status[]" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
-                            <label for="">ไม่ใช้งาน</label>
+                            <input type="radio" name="status[]" id="active" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
+                            <label for="active">ใช้งาน</label>
+                            <input type="radio" name="status[]" id="inactive" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
+                            <label for="inactive">ไม่ใช้งาน</label>
                         </div>
                     </div>
                     <div class="formBtn">
