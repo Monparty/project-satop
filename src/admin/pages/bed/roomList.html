@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>จัดการประเภทห้องพัก</title>
-    <link rel="icon" type="image/x-icon" href="../../../imgs/logoIcon.png">
+    <title>จัดการเตียง</title>
+    <link rel="icon" type="image/x-icon" href="../../../../public/imgs/logosatop.png">
     <link rel="stylesheet" href="../../../../public/css/main.css">
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -15,10 +15,10 @@
     <div class="breadcrumbsAdmin">
         <a href="#">หน้าแรก</a>
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
-        <a>จัดการประเภทห้องพัก</a>
+        <a>จัดการเตียง</a>
     </div>
     <main class="containerAdmin">
-        <h2 style="margin-bottom:10px;">จัดการประเภทห้องพัก</h2>
+        <h2 style="margin-bottom:10px;">จัดการเตียง</h2>
         <div class="boxSearch">
             <div class="searchItem">
                 <input type="text" class="w100" placeholder="ค้นหารายการ..." id="inputFilter" onkeyup="filterTable()">
@@ -28,7 +28,7 @@
                     <option value="Inactive">Inactive</option>
                 </select>
             </div>
-            <a href="addRoom.php" class="button green">เพิ่มประเภทห้องพัก <i class='bx bx-plus'></i></a>
+            <a href="addRoom.php" class="button green">เพิ่มข้อมูลเตียง <i class='bx bx-plus'></i></a>
         </div>
 
         <div class="containerTable">
@@ -36,9 +36,10 @@
                 <thead>
                     <tr>
                         <td width="6%">ลำดับ</td>
-                        <td width="10%">รหัส</td>
                         <td>ประเภทห้องพัก</td>
-                        <td width="16%">วันที่บันทึก</td>
+                        <td width="12%">เลขห้องพัก</td>
+                        <td width="8%">ชั้น</td>
+                        <td width="18%">วันที่บันทึก</td>
                         <td width="14%">สถานะ</td>
                         <td width="5%"></td>
                         <td width="5%"></td>
@@ -50,14 +51,15 @@
                     foreach($query as $fetch) { ?>
                         <tr align="center">
                             <td><?=$count++;?></td>
-                            <td><?=$fetch['code'];?></td>
                             <td align="left"><?=$fetch['name'];?></td>
-                            <td><?=$fetch['create_at'];?></td>
+                            <td><?=$fetch['room_number'];?></td>
+                            <td><?=$fetch['floor'];?></td>
+                            <td><?=date_format(date_create($fetch['createAT']), 'd/m/Y H:i:s')?></td>
                             <td><?=$fetch['status'];?></td>
-                            <td align="left"><a title="แก้ไขข้อมูล" href="editRoom.php?id=<?=$fetch['id'];?>"><i class='bx bx-edit-alt'></i></a></td>
-                            <td align="left"><a title="ลบรายการ" href="?delete=<?=$fetch['id'];?>"><i class='bx bx-trash'></i></a></td>
+                            <td align="left"><a title="แก้ไขข้อมูล" href="editRoom.php?id=<?=$fetch['bed_id'];?>"><i class='bx bx-edit-alt'></i></a></td>
+                            <td align="left"><a title="ลบรายการ" href="?delete=<?=$fetch['bed_id'];?>"><i class='bx bx-trash'></i></a></td>
                         </tr>
-                    <?php } ?>
+                <?php } ?>
                 </tbody>
             </table>
         </div>

@@ -42,6 +42,15 @@
                             </datalist>
                         </div>
                     </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>รหัสประเภทห้องพัก <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="code" value="<?=$row['code'];?>" required>
+                        </div>
+                    </div>
+
                     <div class="headersection">
                         <i class='bx bx-list-check'></i>
                         <h4>สถานะ</h4>
@@ -51,10 +60,10 @@
                             <h4>สถานะ <span class="force">*</span></h4>
                         </div>
                         <div class="boxCheckbox">
-                            <input type="radio" name="status[]" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
-                            <label for="">ใช้งาน</label>
-                            <input type="radio" name="status[]" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
-                            <label for="">ไม่ใช้งาน</label>
+                            <input type="radio" name="status[]" id="active" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
+                            <label for="active">ใช้งาน</label>
+                            <input type="radio" name="status[]" id="inactive" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
+                            <label for="inactive">ไม่ใช้งาน</label>
                         </div>
                     </div>
                     <div class="formBtn">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แก้ไขข้อมูลห้องพัก</title>
+    <title>แก้ไขข้อมูลเตียง</title>
     <link rel="icon" type="image/x-icon" href="../../../../public/imgs/logosatop.png">
     <link rel="stylesheet" href="../../../../public/css/main.css">
     <link rel="stylesheet" href="../../../../public/css/admin.css">
@@ -15,14 +15,14 @@
     <div class="breadcrumbsAdmin">
         <a href="../dashboard/dashboard.php">หน้าแรก</a>
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
-        <a href="roomList.php">จัดการห้องพัก</a>
+        <a href="roomList.php">จัดการเตียง</a>
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
-        <a>แก้ไขข้อมูลห้องพัก</a>
+        <a>แก้ไขข้อมูลเตียง</a>
     </div>
     <form action="editRoom.php" method="post" enctype="multipart/form-data">
         <main class="containerAdmin">
             <section class="formSection">
-                <h2 style="margin-bottom:10px;">แก้ไขข้อมูลห้องพัก</h2>
+                <h2 style="margin-bottom:10px;">แก้ไขข้อมูลเตียง</h2>
                 <div class="form">
                     <input type="hidden" name="id" value="<?=$room_id;?>">
                     <div class="headersection">
@@ -34,7 +34,7 @@
                             <h4>ประเภทห้องพักห้องพัก <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" list="name" name="name" value="<?=$row['name'];?>" required>
+                            <input type="text" class="read" list="name" name="name" value="<?=$name;?>" readonly required>
                             <datalist id="name">
                                 <?php foreach($query_room_type as $row) { ?>
                                 <option value="<?=$row['name'];?>"><?=$row['name'];?></option>
@@ -44,13 +44,29 @@
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
+                            <h4>ชั้น <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="floor" value="<?=$floor;?>" readonly required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>หมายเลขห้องพัก <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="room_number" value="<?=$room_number;?>" required>
+                        </div>
+                    </div>
+                    <div class="formRow" style="display: none;">
+                        <div class="formTitle">
                             <h4>คำอธิบาย</h4>
                         </div>
                         <div class="formInput">
                             <input type="text" name="roomabout" value="<?=$roomabout;?>">
                         </div>
                     </div>
-                    <div class="formRow valignTop">
+                    <div class="formRow valignTop" style="display: none;">
                         <div class="formTitle">
                             <h4>เกี่ยวกับห้องพัก</h4>
                         </div>
@@ -58,7 +74,7 @@
                             <textarea name="roomdesc"><?=$roomdesc;?></textarea>
                         </div>
                     </div>
-                    <div class="formRow">
+                    <div class="formRow" style="display: none;">
                         <div class="formTitle">
                             <h4>ราคาที่พัก <span class="force">*</span></h4>
                         </div>
@@ -72,11 +88,12 @@
                             <h4>จำนวนเตียง <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
-                            <select name="bed">
+                            <select name="" style="display: none;">
                                 <option value="1" <?php echo ($bed=='1') ? 'selected' : ''; ?>>เตียงเดี่ยวขนาดเล็ก</option>
                                 <option value="2" <?php echo ($bed=='2') ? 'selected' : ''; ?>>เตียงคู่</option>
                                 <option value="3" <?php echo ($bed=='3') ? 'selected' : ''; ?>>เตียงใหญ่</option>
                             </select>
+                            <input type="number" name="bed" value="<?=$bed;?>" required>
                         </div>
                     </div>
                     <div class="formRow">
@@ -88,15 +105,8 @@
                             <h5 class="formInputDesc">หน่วยเป็นคน</h5>
                         </div>
                     </div>
-                    <div class="formRow">
-                        <div class="formTitle">
-                            <h4>หมายเลขห้องพัก <span class="force">*</span></h4>
-                        </div>
-                        <div class="formInput w300">
-                            <input type="text" name="room_number" value="<?=$room_number;?>" required>
-                        </div>
-                    </div>
-                    <div class="formRow">
+                    <!--
+                    <div class="formRow" style="display: none;">
                         <div class="formTitle">
                             <h4>รูปภาพประกอบ <span class="force">*</span></h4>
                         </div>
@@ -104,7 +114,7 @@
                             <input type="file" name="image" multiple>
                         </div>
                     </div>
-                    <div class="formRow">
+                    <div class="formRow" style="display: none;">
                         <div class="formTitle"></div>
                         <div style="width: 300px;">
                             <?=$showimg;?>
@@ -112,13 +122,13 @@
                     </div>
 
                     <div>
-                        <div class="formRow">
+                        <div class="formRow" style="display: none;">
                             <div class="formTitle"></div>
                             <div class="formInput file w300">
                                 <input type="file" name="image2" multiple>
                             </div>
                         </div>
-                        <div class="formRow">
+                        <div class="formRow" style="display: none;">
                             <div class="formTitle"></div>
                             <div style="width: 300px; margin: 10px 0;">
                                 <?=$showimg2;?>
@@ -127,13 +137,13 @@
                     </div>
 
                     <div>
-                        <div class="formRow">
+                        <div class="formRow" style="display: none;">
                             <div class="formTitle"></div>
                             <div class="formInput file w300">
                                 <input type="file" name="image3" multiple>
                             </div>
                         </div>
-                        <div class="formRow">
+                        <div class="formRow" style="display: none;">
                             <div class="formTitle"></div>
                             <div style="width: 300px; margin: 10px 0;">
                                 <?=$showimg3;?>
@@ -142,13 +152,13 @@
                     </div>
 
                     <div>
-                        <div class="formRow">
+                        <div class="formRow" style="display: none;">
                             <div class="formTitle"></div>
                             <div class="formInput file w300">
                                 <input type="file" name="image4" multiple>
                             </div>
                         </div>
-                        <div class="formRow">
+                        <div class="formRow" style="display: none;">
                             <div class="formTitle"></div>
                             <div style="width: 300px; margin: 10px 0;">
                                 <?=$showimg4;?>
@@ -157,25 +167,26 @@
                     </div>
 
                     <div>
-                        <div class="formRow">
+                        <div class="formRow" style="display: none;">
                             <div class="formTitle"></div>
                             <div class="formInput file w300">
                                 <input type="file" name="image5" multiple>
                             </div>
                         </div>
-                        <div class="formRow">
+                        <div class="formRow" style="display: none;">
                             <div class="formTitle"></div>
                             <div style="width: 300px; margin: 10px 0;">
                                 <?=$showimg5;?>
                             </div>
                         </div>
                     </div>
+                     -->
 
-                    <div class="headersection">
+                    <div class="headersection" style="display: none;">
                         <i class='bx bxs-playlist'></i>
                         <h4>สิ่งอำนวยความสะดวก</h4>
                     </div>
-                    <div class="formRow valignTop">
+                    <div class="formRow valignTop" style="display: none;">
                         <div class="formTitle">
                             <h4>สิ่งอำนวยความสะดวก</h4>
                         </div>
@@ -231,10 +242,10 @@
                             <h4>สถานะ <span class="force">*</span></h4>
                         </div>
                         <div class="boxCheckbox">
-                            <input type="radio" name="status[]" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
-                            <label for="">ใช้งาน</label>
-                            <input type="radio" name="status[]" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
-                            <label for="">ไม่ใช้งาน</label>
+                            <input type="radio" name="status[]" id="active" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
+                            <label for="active">ใช้งาน</label>
+                            <input type="radio" name="status[]" id="inactive" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
+                            <label for="inactive">ไม่ใช้งาน</label>
                         </div>
                     </div>
                     <div class="formBtn">

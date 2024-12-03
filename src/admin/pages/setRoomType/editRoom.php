@@ -15,13 +15,15 @@ $stmt->execute();
 
 // ใช้สำหรับ Update ข้อมูลจะทำงานเมื่อกดปุ่ม update
 if (isset($_REQUEST['update'])) {
-    $sql = "UPDATE room_type SET name=:name, status=:status, update_at=CURRENT_TIMESTAMP WHERE id=$id";
+    $sql = "UPDATE room_type SET name=:name, code=:code, status=:status, update_at=CURRENT_TIMESTAMP WHERE id=$id";
     
     $stmt = $conn->prepare($sql);
     $name = $_POST['name'];
+    $code = $_POST['code'];
     $status = implode($_POST["status"]);
 
     $stmt->bindParam(":name", $name);
+    $stmt->bindParam(":code", $code);
     $stmt->bindParam(":status", $status);
 
     $stmt->execute();

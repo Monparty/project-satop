@@ -61,8 +61,13 @@
                     <h3><?=$room['room_number']?></h3>
                     <p><?=$room['name']?></p>
                     <div class="bed">
-                        <?php for ($i = 0; $i < $room['bed']; $i++) { ?>
-                            <i class='bx bxs-bed'></i>
+                        <?php 
+                        $room_num = $room['room_number'];
+                        // ดึงข้อมูลเตียงมาแสดง
+                        $sql_beds = "SELECT * FROM beds WHERE room_number = '$room_num;'";
+                        $query_beds = mysqli_query( $c, $sql_beds );
+                        foreach($query_beds as $bed) { ?>
+                            <a href="editRoom.php?id=<?=$bed['bed_id'];?>"><i class='bx bxs-bed'></i></a>
                         <?php } ?>
                     </div>
                 </div>

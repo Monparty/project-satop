@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เพิ่มข้อมูลประเภทห้องพัก</title>
-    <link rel="icon" type="image/x-icon" href="../../../imgs/logoIcon.png">
+    <title>เพิ่มข้อมูลเตียง</title>
+    <link rel="icon" type="image/x-icon" href="../../../../public/imgs/logosatop.png">
     <link rel="stylesheet" href="../../../../public/css/main.css">
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -15,14 +15,14 @@
     <div class="breadcrumbsAdmin">
         <a href="../dashboard/dashboard.php">หน้าแรก</a>
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
-        <a href="roomList.php">จัดการประเภทห้องพัก</a>
+        <a href="roomList.php">จัดการเตียง</a>
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
-        <a>เพิ่มข้อมูลประเภทห้องพัก</a>
+        <a>เพิ่มข้อมูลเตียง</a>
     </div>
-    <form action="addRoom.php" method="post">
+    <form action="addRoom.php" method="post" enctype="multipart/form-data">
         <main class="containerAdmin">
             <section class="formSection">
-                <h2 style="margin-bottom:10px;">เพิ่มข้อมูลประเภทห้องพัก</h2>
+                <h2 style="margin-bottom:10px;">เพิ่มข้อมูลเตียง</h2>
                 <div class="form">
                     <div class="headersection">
                         <i class='bx bx-info-circle'></i>
@@ -30,21 +30,25 @@
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>ประเภทห้องพัก <span class="force">*</span></h4>
+                            <h4>หมายเลขห้องพัก <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="name" required>
+                            <input type="text" list="room_number" name="room_number" required>
+                            <datalist id="room_number">
+                                <?php foreach($query as $fetch) { ?>
+                                <option value="<?=$fetch['room_number'];?>"><?=$fetch['room_number'];?></option>
+                                <?php } ?>
+                            </datalist>
                         </div>
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>รหัสประเภทห้องพัก <span class="force">*</span></h4>
+                            <h4>จำนวนเตียง <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="code" required>
+                            <input type="number" name="amountBed" required>
                         </div>
                     </div>
-
                     <div class="headersection">
                         <i class='bx bx-list-check'></i>
                         <h4>สถานะ</h4>
@@ -69,5 +73,26 @@
         </main>
     </form>
     <script src="../../js/script.js"></script>
+    <script>
+            function addRow(myTable) {
+                var table = document.getElementById(myTable);
+                var row = table.getElementsByTagName('tr');
+                var row = row[row.length-1].outerHTML;
+                table.innerHTML = table.innerHTML + row;
+                var row = table.getElementsByTagName('tr');
+                var row = row[row.length-1].getElementsByTagName('td');
+                for(i=0;i<row.length;i++){
+                    row[i].innerHTML = '<input type="text" name="room_number[]" style="width: 300px; margin-bottom: 10px;" required>';
+                }
+            }
+
+            function deleterow(tblId) {
+                var table = document.getElementById(tblId);
+                var row = table.getElementsByTagName('tr');
+                if(row.length!='1'){
+                    row[row.length - 1].outerHTML='';
+                }
+            }
+    </script>
 </body>
 </html>

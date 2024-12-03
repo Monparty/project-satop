@@ -2,20 +2,22 @@
 include("../../../../config/config.php");
 session_start();
 
+$sql = "SELECT * FROM rooms WHERE status = 'Active'";
+$query = mysqli_query( $c, $sql );
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-  $name = $_POST["name"];
-  $code = $_POST["code"];
+  $room_number = $_POST["room_number"];
+  $amountBed = $_POST["amountBed"];
   $status = implode($_POST["status"]);
+  $sql = "INSERT INTO beds (room_number, status, createAt)
+  VALUES (:room_number, :status, CURRENT_TIMESTAMP)";
 
-  $sql = "INSERT INTO room_type (name, code, status, create_at)
-  VALUES (:name, :code, :status, CURRENT_TIMESTAMP)";
-
+  for ($i = 0; $i < $amountBed; $i++) {
   $stmt = $conn->prepare($sql);
-  $stmt->bindParam(":name", $name);
-  $stmt->bindParam(":code", $code);
+  $stmt->bindParam(":room_number", $room_number);
   $stmt->bindParam(":status", $status);
   $stmt->execute();
+}
 
   if ($stmt->rowCount() > 0) {
     echo '<script>
