@@ -24,14 +24,14 @@
             <section class="formSection">
                 <h2 style="margin-bottom:10px;">แก้ไขข้อมูลเตียง</h2>
                 <div class="form">
-                    <input type="hidden" name="id" value="<?=$room_id;?>">
+                    <input type="hidden" name="id" value="<?=$bed_id;?>">
                     <div class="headersection">
                         <i class='bx bx-info-circle'></i>
                         <h4>ข้อมูลทั่วไป</h4>
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>ประเภทห้องพักห้องพัก <span class="force">*</span></h4>
+                            <h4>ประเภทห้องพัก <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
                             <input type="text" class="read" list="name" name="name" value="<?=$name;?>" readonly required>
@@ -50,12 +50,21 @@
                             <input type="number" name="floor" value="<?=$floor;?>" readonly required>
                         </div>
                     </div>
+
                     <div class="formRow">
                         <div class="formTitle">
                             <h4>หมายเลขห้องพัก <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="room_number" value="<?=$room_number;?>" required>
+                            <select name="room_number" required>
+                                <option value="<?=$room_number;?>" selected><?=$room_number;?></option>
+                                <?php 
+                                $sql = "SELECT * FROM rooms WHERE status = 'Active'";
+                                $query = mysqli_query( $c, $sql );
+                                foreach($query as $fetch) { ?>
+                                <option value="<?=$fetch['room_number'];?>"><?=$fetch['room_number'];?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="formRow" style="display: none;">
@@ -83,7 +92,7 @@
                             <h5 class="formInputDesc">หน่วยเป็นบาท</h5>
                         </div>
                     </div>
-                    <div class="formRow">
+                    <div class="formRow" style="display: none;">
                         <div class="formTitle">
                             <h4>จำนวนเตียง <span class="force">*</span></h4>
                         </div>
@@ -96,7 +105,7 @@
                             <input type="number" name="bed" value="<?=$bed;?>" required>
                         </div>
                     </div>
-                    <div class="formRow">
+                    <div class="formRow" style="display: none;">
                         <div class="formTitle">
                             <h4>รองรับจำนวน <span class="force">*</span></h4>
                         </div>

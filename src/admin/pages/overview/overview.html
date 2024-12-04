@@ -40,6 +40,18 @@
                 cursor: pointer;
             }
         }
+
+        .headersection {
+            gap: 20px;
+            background-color: #D9DBE0;
+
+            .descIcon {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -52,6 +64,28 @@
     </div>
     <main class="containerAdmin">
         <h2 style="margin-bottom:10px;">ภาพรวมห้องพัก</h2>
+        <div class="headersection">
+            <div class="descIcon">
+                <i class='bx bxs-bed' style="color: #FFFFFF;"></i>
+                <p>เตียงว่าง</p>
+            </div>
+            <div class="descIcon">
+                <i class='bx bxs-bed' style="color: #4285F4;"></i>
+                <p>เตียงติดจอง</p>
+            </div>
+            <div class="descIcon">
+                <i class='bx bxs-bed' style="color: #34A853;"></i>
+                <p>Check-in</p>
+            </div>
+            <div class="descIcon">
+                <i class='bx bxs-bed' style="color: #EA4335;"></i>
+                <p>Check-out</p>
+            </div>
+            <div class="descIcon">
+                <i class='bx bxs-bed' style="color: #FBBC05;"></i>
+                <p>รอทำความสะอาด</p>
+            </div>
+        </div>
         <div class="guesthouse">
         <?php foreach($roomsByFloor as $floor => $rooms) { ?>
             <h3>Floor <?=$floor?></h3>
@@ -67,7 +101,7 @@
                         $sql_beds = "SELECT * FROM beds WHERE room_number = '$room_num;'";
                         $query_beds = mysqli_query( $c, $sql_beds );
                         foreach($query_beds as $bed) { ?>
-                            <a href="editRoom.php?id=<?=$bed['bed_id'];?>"><i class='bx bxs-bed'></i></a>
+                            <a href="editRoom?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>"><i class='bx bxs-bed' style="color: <?=($bed['status_bed'] == 'มีผู้เข้าพัก') ? '#0866FF' : ''; ?>;"></i></a>
                         <?php } ?>
                     </div>
                 </div>

@@ -8,14 +8,6 @@
     <link rel="stylesheet" href="../../../../public/css/main.css">
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        .hideImg {
-            width: 300px; 
-            object-fit: cover; 
-            border-radius: 4px;
-            margin: 10px 0;
-        }
-    </style>
 </head>
 <body>
     <?php include("../../layouts/header.php"); ?>
@@ -38,7 +30,7 @@
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>ประเภทห้องพักห้องพัก <span class="force">*</span></h4>
+                            <h4>ประเภทห้องพัก <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
                             <input type="text" list="name" name="name" required>
@@ -98,7 +90,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="formRow">
+                    <div class="formRow" style="display: none;">
                         <div class="formTitle">
                             <h4>จำนวนเตียง <span class="force">*</span></h4>
                         </div>
@@ -109,15 +101,15 @@
                                 <option value="2">เตียงคู่</option>
                                 <option value="3">เตียงใหญ่</option>
                             </select>
-                            <input type="number" name="bed" value="" required>
+                            <input type="number" name="bed" value="">
                         </div>
                     </div>
-                    <div class="formRow">
+                    <div class="formRow" style="display: none;">
                         <div class="formTitle">
                             <h4>รองรับจำนวน <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="number" name="amountpeople" value="" required>
+                            <input type="number" name="amountpeople" value="">
                             <h5 class="formInputDesc">หน่วยเป็นคน</h5>
                         </div>
                     </div>

@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แก้ไขข้อมูลห้องพัก</title>
+    <title>บันทึกข้อมูลการเข้าพัก</title>
     <link rel="icon" type="image/x-icon" href="../../../../public/imgs/logosatop.png">
     <link rel="stylesheet" href="../../../../public/css/main.css">
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .headersection {
+
+            i {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <?php include("../../layouts/header.php"); ?>
@@ -15,213 +23,162 @@
     <div class="breadcrumbsAdmin">
         <a href="../dashboard/dashboard.php">หน้าแรก</a>
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
-        <a href="roomList.php">จัดการห้องพัก</a>
+        <a href="roomList.php">ภาพรวมห้องพัก</a>
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
-        <a>แก้ไขข้อมูลห้องพัก</a>
+        <a>บันทึกข้อมูลการเข้าพัก</a>
     </div>
     <form action="editRoom.php" method="post" enctype="multipart/form-data">
         <main class="containerAdmin">
             <section class="formSection">
-                <h2 style="margin-bottom:10px;">แก้ไขข้อมูลห้องพัก</h2>
+                <h2 style="margin-bottom:10px;">บันทึกข้อมูลการเข้าพัก</h2>
                 <div class="form">
-                    <input type="hidden" name="id" value="<?=$room_id;?>">
+                    <input type="hidden" name="bed_id" value="<?=$bed_id;?>">
                     <div class="headersection">
-                        <i class='bx bx-info-circle'></i>
-                        <h4>ข้อมูลทั่วไป</h4>
+                        <i class='bx bx-building'></i>
+                        <h4>ข้อมูลห้องพัก</h4>
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>ประเภทห้องพักห้องพัก <span class="force">*</span></h4>
+                            <h4>เลขห้องพัก</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" list="name" name="name" value="<?=$row['name'];?>" required>
-                            <datalist id="name">
-                                <?php foreach($query_room_type as $row) { ?>
-                                <option value="<?=$row['name'];?>"><?=$row['name'];?></option>
-                                <?php } ?>
-                            </datalist>
+                            <input type="text" name="room_number" value="<?=$room_num;?>" readonly>
                         </div>
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>คำอธิบาย</h4>
-                        </div>
-                        <div class="formInput">
-                            <input type="text" name="roomabout" value="<?=$roomabout;?>">
-                        </div>
-                    </div>
-                    <div class="formRow valignTop">
-                        <div class="formTitle">
-                            <h4>เกี่ยวกับห้องพัก</h4>
-                        </div>
-                        <div class="formInput">
-                            <textarea name="roomdesc"><?=$roomdesc;?></textarea>
-                        </div>
-                    </div>
-                    <div class="formRow">
-                        <div class="formTitle">
-                            <h4>ราคาที่พัก <span class="force">*</span></h4>
+                            <h4>ประเภทห้องพัก</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="number" name="price" value="<?=$price;?>" required>
-                            <h5 class="formInputDesc">หน่วยเป็นบาท</h5>
+                            <input type="text" name="room_type" value="<?=$name;?>" readonly>
                         </div>
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>จำนวนเตียง <span class="force">*</span></h4>
+                            <h4>ชั้น</h4>
                         </div>
                         <div class="formInput w300">
-                            <select name="bed">
-                                <option value="1" <?php echo ($bed=='1') ? 'selected' : ''; ?>>เตียงเดี่ยวขนาดเล็ก</option>
-                                <option value="2" <?php echo ($bed=='2') ? 'selected' : ''; ?>>เตียงคู่</option>
-                                <option value="3" <?php echo ($bed=='3') ? 'selected' : ''; ?>>เตียงใหญ่</option>
+                            <input type="text" name="" value="<?=$floor;?>" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="headersection">
+                        <i class='bx bx-user'></i>
+                        <h4>ข้อมูลผู้เข้าพัก</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ชื่อผู้เข้าพัก <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="booker_name" value="<?=$booker_name;?>">
+                            <!-- แก้หน้านี้ให้ถูกที ยังบันทึกไม่ได้ -->
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เบอร์โทร</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="phone" value="<?=$phone;?>">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เพศ</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <select name="gender">
+                                <option value="" selected>-</option>
+                                <option value="ชาย">ชาย</option>
+                                <option value="หญิง">หญิง</option>
+                                <option value="อื่นๆ">อื่นๆ</option>
                             </select>
                         </div>
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>รองรับจำนวน <span class="force">*</span></h4>
+                            <h4>สัญชาติ</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="number" name="amountpeople" value="<?=$amountpeople;?>" required>
-                            <h5 class="formInputDesc">หน่วยเป็นคน</h5>
+                            <input type="text" name="nationality" value="<?=$nationality;?>">
                         </div>
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>หมายเลขห้องพัก <span class="force">*</span></h4>
+                            <h4>เลขบัตรประชาชน</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="room_number" value="<?=$room_number;?>" required>
+                            <input type="number" name="id_card" value="<?=$id_card;?>">
                         </div>
                     </div>
                     <div class="formRow">
                         <div class="formTitle">
-                            <h4>รูปภาพประกอบ <span class="force">*</span></h4>
+                            <h4>อีเมล</h4>
                         </div>
-                        <div class="formInput file w300">
-                            <input type="file" name="image" multiple>
+                        <div class="formInput w300">
+                            <input type="text" name="email" value="<?=$email;?>">
                         </div>
-                    </div>
-                    <div class="formRow">
-                        <div class="formTitle"></div>
-                        <div style="width: 300px;">
-                            <?=$showimg;?>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="formRow">
-                            <div class="formTitle"></div>
-                            <div class="formInput file w300">
-                                <input type="file" name="image2" multiple>
-                            </div>
-                        </div>
-                        <div class="formRow">
-                            <div class="formTitle"></div>
-                            <div style="width: 300px; margin: 10px 0;">
-                                <?=$showimg2;?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="formRow">
-                            <div class="formTitle"></div>
-                            <div class="formInput file w300">
-                                <input type="file" name="image3" multiple>
-                            </div>
-                        </div>
-                        <div class="formRow">
-                            <div class="formTitle"></div>
-                            <div style="width: 300px; margin: 10px 0;">
-                                <?=$showimg3;?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="formRow">
-                            <div class="formTitle"></div>
-                            <div class="formInput file w300">
-                                <input type="file" name="image4" multiple>
-                            </div>
-                        </div>
-                        <div class="formRow">
-                            <div class="formTitle"></div>
-                            <div style="width: 300px; margin: 10px 0;">
-                                <?=$showimg4;?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="formRow">
-                            <div class="formTitle"></div>
-                            <div class="formInput file w300">
-                                <input type="file" name="image5" multiple>
-                            </div>
-                        </div>
-                        <div class="formRow">
-                            <div class="formTitle"></div>
-                            <div style="width: 300px; margin: 10px 0;">
-                                <?=$showimg5;?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="headersection">
-                        <i class='bx bxs-playlist'></i>
-                        <h4>สิ่งอำนวยความสะดวก</h4>
                     </div>
                     <div class="formRow valignTop">
                         <div class="formTitle">
-                            <h4>สิ่งอำนวยความสะดวก</h4>
+                            <h4>ที่อยู่</h4>
                         </div>
                         <div class="formInput">
-                            <div class="containerCheckbox">
-                                <div class="boxCheckbox">
-                                    <input id="fa1" type="checkbox" name="facility1" value="1" <?php echo ($facility1=='1') ? 'checked' : ''; ?>>
-                                    <label for="fa1">โต๊ะทำงาน</label>
-                                </div>
-                                <div class="boxCheckbox">
-                                    <input id="fa2" type="checkbox" name="facility2" value="2" <?php echo ($facility2=='2') ? 'checked' : ''; ?>>
-                                    <label for="fa2">เครื่องปรับอากาศ</label>
-                                </div>
-                            </div>
-                            <div class="containerCheckbox">
-                                <div class="boxCheckbox">
-                                    <input id="fa3" type="checkbox" name="facility3" value="3" <?php echo ($facility3=='3') ? 'checked' : ''; ?>>
-                                    <label for="fa3">อ่างอาบน้ำ</label>
-                                </div>
-                                <div class="boxCheckbox">
-                                    <input id="fa4" type="checkbox" name="facility4" value="4" <?php echo ($facility4=='4') ? 'checked' : ''; ?>>
-                                    <label for="fa4">ผ้านวมเสริม</label>
-                                </div>
-                            </div>
-                            <div class="containerCheckbox">
-                                <div class="boxCheckbox">
-                                    <input id="fa5" type="checkbox" name="facility5" value="5" <?php echo ($facility5=='5') ? 'checked' : ''; ?>>
-                                    <label for="fa5">ทีวีเคเบิ้ล</label>
-                                </div>
-                                <div class="boxCheckbox">
-                                    <input id="fa6" type="checkbox" name="facility6" value="6" <?php echo ($facility6=='6') ? 'checked' : ''; ?>>
-                                    <label for="fa6">พื้นที่สูบบุหรี่</label>
-                                </div>
-                            </div>
-                            <div class="containerCheckbox">
-                                <div class="boxCheckbox">
-                                    <input id="fa7" type="checkbox" name="facility7" value="7" <?php echo ($facility7=='7') ? 'checked' : ''; ?>>
-                                    <label for="fa7">ตู้เซฟอิเล็กทรอนิกส์</label>
-                                </div>
-                                <div class="boxCheckbox">
-                                    <input id="fa8" type="checkbox" name="facility8" value="8" <?php echo ($facility8=='8') ? 'checked' : ''; ?>>
-                                    <label for="fa8">ต้อนรับสัตว์เลี้ยง</label>
-                                </div>
-                            </div>
+                            <textarea name="address"><?=$address;?></textarea>
                         </div>
                     </div>
+                    <div class="headersection">
+                        <i class='bx bx-calendar-check'></i>
+                        <h4>ข้อมูลการจอง</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>Check in <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="date" name="check_in_date" value="<?=$check_in_date;?>">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>Check-out</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="date" name="check_out_date" value="<?=$check_out_date;?>">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>จำนวนผู้เข้าพัก</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="amountpeople" value="<?=$amountpeople;?>">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>วิธีการชำระเงิน</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <select name="payment">
+                                <option value="">-</option>
+                                <option value="เงินสด" selected>เงินสด</option>
+                                <option value="โอนเงิน">โอนเงิน</option>
+                                <option value="บัตรเครดิต">บัตรเครดิต</option>
+                                <option value="อื่นๆ">อื่นๆ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow valignTop">
+                        <div class="formTitle">
+                            <h4>หมายเหตุ</h4>
+                        </div>
+                        <div class="formInput">
+                            <textarea name="remark"><?=$remark;?></textarea>
+                        </div>
+                    </div>
+
                     <div class="headersection">
                         <i class='bx bx-list-check'></i>
                         <h4>สถานะ</h4>
@@ -231,10 +188,10 @@
                             <h4>สถานะ <span class="force">*</span></h4>
                         </div>
                         <div class="boxCheckbox">
-                            <input type="radio" name="status[]" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
-                            <label for="">ใช้งาน</label>
-                            <input type="radio" name="status[]" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
-                            <label for="">ไม่ใช้งาน</label>
+                            <input type="radio" name="status[]" id="Active" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
+                            <label for="Active">ใช้งาน</label>
+                            <input type="radio" name="status[]" id="Inactive" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
+                            <label for="Inactive">ไม่ใช้งาน</label>
                         </div>
                     </div>
                     <div class="formBtn">

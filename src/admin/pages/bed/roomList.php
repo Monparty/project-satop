@@ -2,7 +2,7 @@
 include("../../../../config/config.php");
 session_start();
 
-$sql = "SELECT beds.*, rooms.* FROM beds LEFT JOIN rooms ON beds.room_number = rooms.room_number;";
+$sql = "SELECT beds.*, rooms.* FROM beds LEFT JOIN rooms ON beds.room_number = rooms.room_number WHERE rooms.room_number != ''";
 $query = mysqli_query( $c, $sql );
 
 // ลบข้อมูล

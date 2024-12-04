@@ -128,7 +128,7 @@
             <a class="sideItem" href="../../pages/room/roomList"><i class='bx bx-calendar-edit'></i>จัดการห้องพัก</a>
             <a class="sideItem" href="../../pages/bed/roomList"><i class='bx bx-hotel'></i>จัดการเตียง</a>
             <a class="sideItem" href="../../pages/bookings/bookingList"><i class='bx bx-book-bookmark'></i>ข้อมูลการจองห้องพัก</a>
-            <a class="sideItem" href="../../pages/checkInCheckOut/checkInCheckOutList"><i class='bx bx-calendar-check'></i>จัดการเช็คอิน เช็คเอาท์</a>
+            <!-- <a class="sideItem" href="../../pages/checkInCheckOut/checkInCheckOutList"><i class='bx bx-calendar-check'></i>จัดการเช็คอิน เช็คเอาท์</a> -->
             <!-- <a class="sideItem" href="../../pages/meetRoom/meetRoomList.php"><i class='bx bxs-building-house'></i>จัดการห้องประชุม</a> -->
             <!-- <a class="sideItem" href="../../pages/meetRoomBookings/bookingList.php"><i class='bx bxs-book-bookmark'></i>ข้อมูลการจองห้องประชุม</a> -->
             <!-- <a class="sideItem" href="../../pages/meetRoomAccess/checkInCheckOutList.php"><i class='bx bxs-calendar-check'></i>การเข้าใช้งานห้องประชุม</a> -->

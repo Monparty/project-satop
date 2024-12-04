@@ -13,42 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $roomabout = $_POST["roomabout"];
   $bed = $_POST["bed"];
   $amountpeople = $_POST["amountpeople"];
-  $facility1 = isset($_POST['facility1']) ? $_POST['facility1'] : "";
-  $facility2 = isset($_POST['facility2']) ? $_POST['facility2'] : "";
-  $facility3 = isset($_POST['facility3']) ? $_POST['facility3'] : "";
-  $facility4 = isset($_POST['facility4']) ? $_POST['facility4'] : "";
-  $facility5 = isset($_POST['facility5']) ? $_POST['facility5'] : "";
-  $facility6 = isset($_POST['facility6']) ? $_POST['facility6'] : "";
-  $facility7 = isset($_POST['facility7']) ? $_POST['facility7'] : "";
-  $facility8 = isset($_POST['facility8']) ? $_POST['facility8'] : "";
   $room_number = isset($_POST["room_number"]) ? implode(", ",$_POST["room_number"]) : "";
   $status = implode($_POST["status"]);
-  $image = file_get_contents($_FILES["image"]["tmp_name"]);
-  $image_base64 = base64_encode($image);
-  if($_FILES["image2"]["tmp_name"]!=""){
-      $image2 = file_get_contents($_FILES["image2"]["tmp_name"]);
-      $image_base642 = base64_encode($image2);
-  } else {
-    $image_base642 = "";
-  };
-  if($_FILES["image3"]["tmp_name"]!=""){
-      $image3 = file_get_contents($_FILES["image3"]["tmp_name"]);
-      $image_base643 = base64_encode($image3);
-  } else {
-    $image_base643 = "";
-  };
-  if($_FILES["image4"]["tmp_name"]!=""){
-      $image4 = file_get_contents($_FILES["image4"]["tmp_name"]);
-      $image_base644 = base64_encode($image4);
-  } else {
-    $image_base644 = "";
-  };
-  if($_FILES["image5"]["tmp_name"]!=""){
-      $image5 = file_get_contents($_FILES["image5"]["tmp_name"]);
-      $image_base645 = base64_encode($image5);
-  } else {
-    $image_base645 = "";
-  };
 
   $sql = "INSERT INTO rooms (name, roomdesc, price, roomabout,  bed, amountpeople, facility1, facility2, facility3, facility4, facility5, facility6, facility7, facility8, room_number, status, createAt, image, image2, image3, image4, image5)
   VALUES (:name, :roomdesc, :price, :roomabout, :bed, :amountpeople, :facility1, :facility2, :facility3, :facility4, :facility5, :facility6, :facility7, :facility8, :room_number, :status, CURRENT_TIMESTAMP, :image_base64, :image_base642, :image_base643, :image_base644, :image_base645)";
