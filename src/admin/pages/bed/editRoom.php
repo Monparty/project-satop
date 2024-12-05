@@ -4,8 +4,7 @@ session_start();
 
 // ใช้สำหรับแสดงข้อมูลตาม ID ที่เลือกมา
 $bed_id = $_REQUEST['id'];
-$sql = "SELECT beds.*, rooms.* FROM beds LEFT JOIN rooms ON beds.room_number = rooms.room_number WHERE bed_id=$bed_id";
-//$sql = "SELECT * FROM beds WHERE bed_id=$bed_id";
+$sql = "SELECT beds.*, rooms.room_number, rooms.name, rooms.floor FROM beds LEFT JOIN rooms ON beds.room_number = rooms.room_number WHERE bed_id=$bed_id";
 $result = mysqli_query($c, $sql);
 $row = mysqli_fetch_array($result);
 extract($row);

@@ -37,7 +37,8 @@
                     <tr>
                         <td width="6%">ลำดับ</td>
                         <td>ประเภทห้องพัก</td>
-                        <td width="12%">เลขห้องพัก</td>
+                        <td width="8%">รหัสห้องพัก</td>
+                        <td width="8%">เลขห้องพัก</td>
                         <td width="8%">ชั้น</td>
                         <td width="18%">วันที่บันทึก</td>
                         <td width="14%">สถานะ</td>
@@ -52,9 +53,10 @@
                         <tr align="center">
                             <td><?=$count++;?></td>
                             <td align="left"><?=$fetch['name'];?></td>
+                            <td><?=$fetch['bed_id'];?></td>
                             <td><?=$fetch['room_number'];?></td>
                             <td><?=$fetch['floor'];?></td>
-                            <td><?=date_format(date_create($fetch['createAT']), 'd/m/Y H:i:s')?></td>
+                            <td><?=date_format(date_create($fetch['createAt']), 'd/m/Y H:i:s')?></td>
                             <td><?=$fetch['status'];?></td>
                             <td align="left"><a title="แก้ไขข้อมูล" href="editRoom.php?id=<?=$fetch['bed_id'];?>"><i class='bx bx-edit-alt'></i></a></td>
                             <td align="left"><a title="ลบรายการ" href="?delete=<?=$fetch['bed_id'];?>"><i class='bx bx-trash'></i></a></td>

@@ -97,7 +97,7 @@
                         <?php 
                         $room_num = $room['room_number'];
                         // ดึงข้อมูลเตียงมาแสดง
-                        $sql_beds = "SELECT * FROM beds WHERE room_number = '$room_num;'";
+                        $sql_beds = "SELECT * FROM beds WHERE room_number = '$room_num' AND status = 'Active'";
                         $query_beds = mysqli_query( $c, $sql_beds );
                         foreach($query_beds as $bed) { 
                             if ($bed['status_bed'] == 'เตียงว่าง') { ?>

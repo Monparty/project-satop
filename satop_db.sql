@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2024 at 12:41 PM
+-- Generation Time: Dec 05, 2024 at 06:30 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -50,7 +50,7 @@ CREATE TABLE `beds` (
   `status` varchar(100) NOT NULL,
   `createAt` datetime NOT NULL,
   `updateAt` datetime NOT NULL,
-  `status_bed` varchar(50) DEFAULT NULL
+  `status_bed` varchar(50) DEFAULT 'เตียงว่าง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -58,49 +58,19 @@ CREATE TABLE `beds` (
 --
 
 INSERT INTO `beds` (`bed_id`, `room_number`, `status`, `createAt`, `updateAt`, `status_bed`) VALUES
-(1, 102, 'Active', '2024-12-03 18:42:47', '2024-12-05 16:02:30', 'check-in'),
-(2, 201, 'Active', '2024-12-03 18:43:01', '2024-12-05 17:45:35', 'รอทำความสะอาด'),
-(3, 202, 'Active', '2024-12-03 18:43:13', '0000-00-00 00:00:00', NULL),
-(4, 202, 'Active', '2024-12-03 18:43:13', '2024-12-05 01:02:47', ''),
-(5, 202, 'Active', '2024-12-03 18:43:13', '2024-12-05 01:02:43', ''),
-(6, 202, 'Active', '2024-12-03 18:43:13', '2024-12-05 00:59:00', ''),
-(7, 203, 'Active', '2024-12-03 18:43:31', '2024-12-05 00:58:20', ''),
-(8, 204, 'Active', '2024-12-03 18:43:48', '2024-12-05 14:30:35', ''),
-(9, 304, 'Active', '2024-12-03 18:43:58', '2024-12-05 01:02:27', ''),
-(10, 301, 'Active', '2024-12-03 18:44:15', '2024-12-05 15:22:22', NULL),
-(11, 302, 'Active', '2024-12-03 18:44:40', '0000-00-00 00:00:00', NULL),
-(12, 302, 'Active', '2024-12-03 18:44:40', '0000-00-00 00:00:00', NULL),
-(13, 302, 'Active', '2024-12-03 18:44:40', '0000-00-00 00:00:00', NULL),
-(14, 302, 'Active', '2024-12-03 18:44:40', '0000-00-00 00:00:00', NULL),
-(15, 302, 'Active', '2024-12-03 18:44:40', '2024-12-05 01:04:48', ''),
-(16, 302, 'Active', '2024-12-03 18:44:40', '2024-12-05 01:04:42', ''),
-(17, 303, 'Active', '2024-12-03 18:45:05', '0000-00-00 00:00:00', NULL),
-(18, 303, 'Active', '2024-12-03 18:45:05', '2024-12-05 01:05:09', ''),
-(19, 303, 'Active', '2024-12-03 18:45:05', '0000-00-00 00:00:00', NULL),
-(20, 303, 'Active', '2024-12-03 18:45:05', '0000-00-00 00:00:00', NULL),
-(21, 303, 'Active', '2024-12-03 18:45:05', '0000-00-00 00:00:00', NULL),
-(22, 303, 'Active', '2024-12-03 18:45:05', '0000-00-00 00:00:00', NULL),
-(23, 303, 'Active', '2024-12-03 18:45:05', '0000-00-00 00:00:00', NULL),
-(24, 205, 'Active', '2024-12-03 18:45:29', '2024-12-05 14:47:19', ''),
-(25, 401, 'Active', '2024-12-03 18:45:42', '2024-12-05 16:43:30', 'check-in'),
-(26, 402, 'Active', '2024-12-03 18:45:52', '2024-12-05 16:58:50', 'check-in'),
-(27, 403, 'Active', '2024-12-03 18:46:41', '2024-12-04 22:59:49', ''),
-(28, 403, 'Active', '2024-12-03 18:46:41', '0000-00-00 00:00:00', NULL),
-(29, 403, 'Active', '2024-12-03 18:46:41', '0000-00-00 00:00:00', NULL),
-(30, 403, 'Active', '2024-12-03 18:46:41', '0000-00-00 00:00:00', NULL),
-(31, 403, 'Active', '2024-12-03 18:46:41', '0000-00-00 00:00:00', NULL),
-(32, 404, 'Active', '2024-12-03 18:47:02', '0000-00-00 00:00:00', NULL),
-(33, 404, 'Active', '2024-12-03 18:47:02', '0000-00-00 00:00:00', NULL),
-(34, 404, 'Active', '2024-12-03 18:47:02', '0000-00-00 00:00:00', NULL),
-(35, 404, 'Active', '2024-12-03 18:47:02', '0000-00-00 00:00:00', NULL),
-(36, 404, 'Active', '2024-12-03 18:47:02', '0000-00-00 00:00:00', NULL),
-(37, 404, 'Active', '2024-12-03 18:47:02', '0000-00-00 00:00:00', NULL),
-(38, 405, 'Active', '2024-12-03 18:47:13', '0000-00-00 00:00:00', NULL),
-(52, 102, 'Active', '2024-12-04 23:09:48', '2024-12-05 00:59:50', ''),
-(53, 501, 'Active', '2024-12-05 16:50:14', '2024-12-05 16:51:47', 'check-out'),
-(54, 501, 'Active', '2024-12-05 16:50:14', '0000-00-00 00:00:00', NULL),
-(55, 501, 'Active', '2024-12-05 16:50:14', '0000-00-00 00:00:00', NULL),
-(56, 501, 'Active', '2024-12-05 16:50:14', '2024-12-05 16:53:18', 'check-in');
+(74, 102, 'Active', '2024-12-05 21:31:09', '2024-12-05 22:31:47', 'check-in'),
+(75, 201, 'Active', '2024-12-05 21:31:26', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(76, 202, 'Active', '2024-12-05 21:31:40', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(77, 203, 'Active', '2024-12-05 21:31:48', '2024-12-05 22:35:31', 'รอทำความสะอาด'),
+(78, 203, 'Active', '2024-12-05 21:31:48', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(79, 203, 'Active', '2024-12-05 21:31:48', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(80, 203, 'Active', '2024-12-05 21:31:48', '2024-12-05 22:22:59', 'เตียงว่าง'),
+(81, 301, 'Active', '2024-12-05 21:31:55', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(82, 301, 'Active', '2024-12-05 21:31:55', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(83, 301, 'Active', '2024-12-05 21:31:55', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(84, 301, 'Active', '2024-12-05 21:31:55', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(85, 302, 'Active', '2024-12-05 21:32:05', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(86, 303, 'Active', '2024-12-05 21:32:12', '2024-12-05 23:40:31', 'เตียงว่าง');
 
 -- --------------------------------------------------------
 
@@ -117,7 +87,6 @@ CREATE TABLE `bookings` (
   `phone` varchar(11) DEFAULT NULL,
   `remark` varchar(255) DEFAULT NULL,
   `room_number` varchar(11) DEFAULT NULL,
-  `car_number` varchar(20) DEFAULT NULL,
   `check_in_at` datetime DEFAULT NULL,
   `check_out_at` datetime DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
@@ -127,24 +96,22 @@ CREATE TABLE `bookings` (
   `payment` varchar(20) DEFAULT NULL,
   `amountpeople` int(20) DEFAULT NULL,
   `room_type` varchar(100) DEFAULT NULL,
-  `bed_id` varchar(20) DEFAULT NULL
+  `bed_id` varchar(20) DEFAULT NULL,
+  `updateAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`booking_id`, `check_in_date`, `check_out_date`, `email`, `booker_name`, `phone`, `remark`, `room_number`, `car_number`, `check_in_at`, `check_out_at`, `gender`, `nationality`, `id_card`, `address`, `payment`, `amountpeople`, `room_type`, `bed_id`) VALUES
-(303, '0000-00-00', '0000-00-00', 'sukontaprapun@gmail.com', 'สุนิติ สุคนธประพันธ์', '0943030401', '', '102', NULL, '2024-12-05 16:02:30', NULL, 'ชาย', 'ไทย', '1', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 0, 'ห้อง Private พัดลม', '1'),
-(304, '0000-00-00', '0000-00-00', 'นาย 401', 'นาย 401', '401', '', '401', NULL, '2024-12-05 16:13:42', NULL, 'ชาย', 'นาย 401', '401', 'นาย 401', 'เงินสด', 0, 'ห้อง Private แอร์', '25'),
-(305, '2024-12-05', '2024-12-12', 'efws#@#sefe', 'นาย 201', '123', 'remark', '201', NULL, '2024-12-05 16:19:27', NULL, 'อื่นๆ', 'ไทย', '1123334547878', '123', 'อื่นๆ', 5, 'ห้อง Private พัดลม', '2'),
-(306, '2024-12-05', '2024-12-12', 'efws#@#sefe', 'นาย 201 test', '123', 'remark', '201', NULL, '2024-12-05 16:28:14', NULL, 'อื่นๆ', 'ไทย', '1123334547878', '123', 'อื่นๆ', 2, 'ห้อง Private พัดลม', '2'),
-(307, '2024-12-05', '2024-12-19', 'sukontaprapun@gmail.com', 'สุนิติ สุคนธประพันธ์ 201', '0943030401', 'note', '201', NULL, '2024-12-05 16:30:07', NULL, 'หญิง', 'ไทย', '123', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'บัตรเครดิต', 2, 'ห้อง Private พัดลม', '2'),
-(308, '2024-12-06', '0000-00-00', '', '132', '', '', '401', NULL, '2024-12-05 16:40:06', NULL, '', '', '', '', 'เงินสด', 0, 'ห้อง Private แอร์', '25'),
-(309, '2024-12-05', '0000-00-00', '', '1', '', '', '401', NULL, '2024-12-05 16:41:10', NULL, '', '', '', '', 'เงินสด', 0, 'ห้อง Private แอร์', '25'),
-(310, '2024-12-05', '2024-12-06', 'sukontaprapun@gmail.com', 'สุนิติ สุคนธประพันธ์', '0943030401', '', '501', NULL, '2024-12-05 16:51:12', NULL, 'หญิง', 'ไทย', '123', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 1, 'ห้อง Private แอร์', '53'),
-(311, '2024-12-05', '2024-12-06', '5', 'สุนิติ 501', '5', '5', '501', NULL, '2024-12-05 16:53:18', NULL, 'อื่นๆ', '5', '55', '5', 'เงินสด', 5, 'ห้อง Private แอร์', '56'),
-(312, '2024-12-05', '2024-12-13', '402', 'นาย 402', '402', '402', '402', NULL, '2024-12-05 16:58:50', NULL, 'ชาย', '402', '402', '402', 'เงินสด', 5, 'ห้อง Private พัดลม', '26');
+INSERT INTO `bookings` (`booking_id`, `check_in_date`, `check_out_date`, `email`, `booker_name`, `phone`, `remark`, `room_number`, `check_in_at`, `check_out_at`, `gender`, `nationality`, `id_card`, `address`, `payment`, `amountpeople`, `room_type`, `bed_id`, `updateAt`) VALUES
+(315, '2024-12-05', '2024-12-08', 'sukontaprapun@gmail.com', 'นาย102', '0943030401', 'นาย102', '102', '2024-12-05 21:41:49', NULL, 'ชาย', 'ไทย', '123', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 1, 'ห้อง Private พัดลม', '74', NULL),
+(316, '2024-12-05', '2024-12-13', 'sukontaprapun@gmail.com', 'นาย 102 คนที่ 2', '0943030401', 'นาย 102 คนที่ 2', '102', '2024-12-05 22:16:32', NULL, '', '', '', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 2, 'ห้อง Private พัดลม', '74', NULL),
+(317, '2024-12-12', '0000-00-00', '', 'นาย 303 เตียง 1', '', '', '203', '2024-12-05 22:18:56', NULL, '', '', '', '', 'เงินสด', 0, 'ห้องพักรวม', '77', NULL),
+(318, '2024-12-19', '2024-12-06', '', 'นาย 303 เตียง 1 คน 2', '', '', '203', '2024-12-05 22:19:27', NULL, '', '', '', '', 'เงินสด', 0, 'ห้องพักรวม', '77', '2024-12-05 22:35:43'),
+(319, '2024-12-06', '0000-00-00', '', 'นาย 203 เตียง 4 คน 1', '', '', '203', '2024-12-05 22:21:08', NULL, '', '', '', '', 'เงินสด', 0, 'ห้องพักรวม', '80', NULL),
+(320, '2024-12-21', '2024-12-28', '', 'นาย 203 เตียง 4 คน 2', '', '', '203', '2024-12-05 22:21:25', NULL, '', '', '', 'ที่อยู่', 'เงินสด', 0, 'ห้องพักรวม', '80', '2024-12-05 22:22:46'),
+(321, '2024-12-07', '0000-00-00', '', 'นาย 102 คนที่ 3', '', '', '102', '2024-12-05 22:31:47', NULL, '', '', '', '', 'เงินสด', 0, 'ห้อง Private พัดลม', '74', NULL);
 
 -- --------------------------------------------------------
 
@@ -202,14 +169,9 @@ INSERT INTO `highlight_info` (`id`, `name`) VALUES
 CREATE TABLE `rooms` (
   `room_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `image` longblob NOT NULL,
-  `price` int(11) NOT NULL,
   `status` varchar(255) DEFAULT NULL,
   `createAT` datetime DEFAULT NULL,
   `updateAT` datetime DEFAULT NULL,
-  `roomdesc` varchar(255) DEFAULT NULL,
-  `roomabout` varchar(255) DEFAULT NULL,
-  `bed` varchar(255) DEFAULT NULL,
   `floor` int(10) DEFAULT NULL,
   `room_number` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -218,22 +180,14 @@ CREATE TABLE `rooms` (
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`room_id`, `name`, `image`, `price`, `status`, `createAT`, `updateAT`, `roomdesc`, `roomabout`, `bed`, `floor`, `room_number`) VALUES
-(151, 'ห้อง Private พัดลม', '', 0, 'Active', '2024-12-02 23:47:57', '2024-12-04 18:19:41', '', '', '1', 1, '102'),
-(152, 'ห้อง Private พัดลม', '', 0, 'Active', '2024-12-02 23:48:45', NULL, NULL, NULL, '1', 2, '201'),
-(153, 'ห้องพักรวม', '', 0, 'Active', '2024-12-02 23:49:14', NULL, NULL, NULL, '4', 2, '202'),
-(154, 'ห้อง Private พัดลม', '', 0, 'Active', '2024-12-02 23:49:39', NULL, NULL, NULL, '1', 2, '203'),
-(155, 'ห้อง Private พัดลม', '', 0, 'Active', '2024-12-02 23:50:15', NULL, NULL, NULL, '1', 2, '204'),
-(156, 'ห้อง Private แอร์', '', 0, 'Active', '2024-12-02 23:50:42', NULL, NULL, NULL, '1', 2, '205'),
-(157, 'ห้อง Private แอร์', '', 0, 'Active', '2024-12-02 23:58:39', NULL, NULL, NULL, '1', 3, '301'),
-(158, 'ห้องพักรวม', '', 0, 'Active', '2024-12-02 23:59:12', NULL, NULL, NULL, '6', 3, '302'),
-(159, 'ห้องพักรวม', '', 0, 'Active', '2024-12-02 23:59:36', NULL, NULL, NULL, '7', 3, '303'),
-(160, 'ห้อง Private พัดลม', '', 0, 'Active', '2024-12-03 00:00:06', NULL, NULL, NULL, '1', 3, '304'),
-(161, 'ห้อง Private แอร์', '', 0, 'Active', '2024-12-03 00:00:35', NULL, NULL, NULL, '1', 4, '401'),
-(162, 'ห้อง Private พัดลม', '', 0, 'Active', '2024-12-03 00:01:03', NULL, NULL, NULL, '1', 4, '402'),
-(163, 'ห้องพักรวม', '', 0, 'Active', '2024-12-03 00:01:26', NULL, NULL, NULL, '5', 4, '403'),
-(164, 'ห้องพักรวม', '', 0, 'Active', '2024-12-03 00:01:50', NULL, NULL, NULL, '6', 4, '404'),
-(165, 'ห้อง Private แอร์', '', 0, 'Active', '2024-12-03 00:02:15', NULL, NULL, NULL, '1', 4, '405');
+INSERT INTO `rooms` (`room_id`, `name`, `status`, `createAT`, `updateAT`, `floor`, `room_number`) VALUES
+(177, 'ห้อง Private พัดลม', 'Active', '2024-12-05 21:26:53', NULL, 1, '102'),
+(178, 'ห้อง Private พัดลม', 'Active', '2024-12-05 21:27:05', '2024-12-05 21:28:46', 2, '201'),
+(179, 'ห้อง Private แอร์', 'Active', '2024-12-05 21:27:21', NULL, 2, '202'),
+(180, 'ห้องพักรวม', 'Active', '2024-12-05 21:27:41', NULL, 2, '203'),
+(181, 'ห้องพักรวม', 'Active', '2024-12-05 21:28:08', '2024-12-05 21:32:42', 3, '301'),
+(182, 'ห้อง Private แอร์', 'Active', '2024-12-05 21:28:16', NULL, 3, '302'),
+(183, 'ห้อง Private พัดลม', 'Active', '2024-12-05 21:28:24', '2024-12-05 23:03:39', 3, '303');
 
 -- --------------------------------------------------------
 
@@ -354,13 +308,13 @@ ALTER TABLE `bank_info`
 -- AUTO_INCREMENT for table `beds`
 --
 ALTER TABLE `beds`
-  MODIFY `bed_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `bed_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
 
 --
 -- AUTO_INCREMENT for table `facility_info`
@@ -378,7 +332,7 @@ ALTER TABLE `highlight_info`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
 -- AUTO_INCREMENT for table `room_type`
