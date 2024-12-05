@@ -13,12 +13,11 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            height: calc(100% - 50px);
+            height: calc(100% - 100px);
             overflow-y: scroll;
         }
 
         .floor {
-            /* background-color: red; */
             width: 100%;
             display: flex;
             gap: 10px;
@@ -71,7 +70,7 @@
             </div>
             <div class="descIcon">
                 <i class='bx bxs-bed' style="color: var(--statusBlue);"></i>
-                <p>เตียงติดจอง</p>
+                <p>จองแล้ว</p>
             </div>
             <div class="descIcon">
                 <i class='bx bxs-bed' style="color: var(--statusGreen);"></i>
@@ -101,16 +100,16 @@
                         $sql_beds = "SELECT * FROM beds WHERE room_number = '$room_num;'";
                         $query_beds = mysqli_query( $c, $sql_beds );
                         foreach($query_beds as $bed) { 
-                            if ($bed['status_bed'] == '') { ?>
-                                <a href="add?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state="><i class='bx bxs-bed' style="color: var(--statusWhite);"></i></a>
-                            <?php } else if ($bed['status_bed'] == 'เตียงติดจอง') { ?>
-                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=book"><i class='bx bxs-bed' style="color: var(--statusBlue);"></i></a>
-                            <?php } else if ($bed['status_bed'] == 'check-in') { ?>
-                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=check-in"><i class='bx bxs-bed' style="color: var(--statusGreen);"></i></a>
-                            <?php } else if ($bed['status_bed'] == 'check-out') { ?>
-                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=check-out"><i class='bx bxs-bed' style="color: var(--statusRed);"></i></a>
-                                <?php } else if ($bed['status_bed'] == 'รอทำความสะอาด') { ?>
-                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=clean"><i class='bx bxs-bed' style="color: var(--statusYell);"></i></a>
+                            if ($bed['status_bed'] == 'เตียงว่าง') { ?>
+                                <a href="add?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=e"><i class='bx bxs-bed' style="color: var(--statusWhite);"></i></a>
+                            <?php } elseif ($bed['status_bed'] == 'จองแล้ว') { ?>
+                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=b"><i class='bx bxs-bed' style="color: var(--statusBlue);"></i></a>
+                            <?php } elseif ($bed['status_bed'] == 'check-in') { ?>
+                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=i"><i class='bx bxs-bed' style="color: var(--statusGreen);"></i></a>
+                            <?php } elseif ($bed['status_bed'] == 'check-out') { ?>
+                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=o"><i class='bx bxs-bed' style="color: var(--statusRed);"></i></a>
+                            <?php } elseif ($bed['status_bed'] == 'รอทำความสะอาด') { ?>
+                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=c"><i class='bx bxs-bed' style="color: var(--statusYell);"></i></a>
                             <?php } ?>
                         <?php } ?>
                     </div>

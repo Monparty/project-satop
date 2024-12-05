@@ -33,7 +33,6 @@
                 <h2 style="margin-bottom:10px;">บันทึกข้อมูลการเข้าพัก</h2>
                 <div class="form">
                     <input type="hidden" name="bed_id" value="<?=$bed_id;?>">
-                    <input type="hidden" name="booking_id" value="<?=$row['booking_id'];?>">
                     <div class="headersection">
                         <i class='bx bx-building'></i>
                         <h4>ข้อมูลห้องพัก</h4>
@@ -183,12 +182,12 @@
                             <h4>สถานะเตียงปัจจุบัน</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" value="<?=($_GET['state']==$_GET['state']) ? $_GET['state'] : ''; ?>" readonly>
+                            <input type="text" value="<?=$status_bed;?>" readonly>
                         </div>
                     </div>
                     <div class="formBtn">
                         <button type="submit" class="button gray w120" name="empty">เตียงว่าง</button>
-                        <button type="submit" class="button w120" name="book" style="background-color: var(--statusBlue);">เตียงติดจอง</button>
+                        <button type="submit" class="button w120" name="book" style="background-color: var(--statusBlue);">จองเตียง</button>
                         <button type="submit" class="button w120" name="check-in" style="background-color: var(--statusGreen);">Check-in</button>
                         <button type="submit" class="button w120" name="check-out" style="background-color: var(--statusRed);">Check-out</button>
                         <button type="submit" class="button w120" name="clean" style="background-color: var(--statusYell);">ทำความสะอาด</button>
