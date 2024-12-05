@@ -21,6 +21,12 @@
     --lightGray: #F6F6F6;
     --lightBlue: #D5EAFF;
     --shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+    --statusWhite: #FFFFFF;
+    --statusBlue: #4285F4;
+    --statusGreen: #34A853;
+    --statusRed: #EA4335;
+    --statusYell: #FBBC05;
 }
 
 .container {
@@ -238,6 +244,10 @@ input[type=file]::file-selector-button:hover {
 
 .w100 {
     width: 100px;
+}
+
+.w120 {
+    width: 120px;
 }
 
 .w200 {

@@ -32,8 +32,9 @@
                     <tr>
                         <td width="6%">ลำดับ</td>
                         <td>ชื่อผู้จองห้องพัก</td>
-                        <td width="18%">วันที่ทำรายการ</td>
-                        <td width="24%">สถานะ</td>
+                        <td width="24%">เลขห้องพัก</td>
+                        <td width="18%">Check-in</td>
+                        <td width="18%">Check-out</td>
                         <td width="10%"></td>
                     </tr>
                 </thead>
@@ -44,8 +45,9 @@
                         <tr align="center">
                             <td><?=$count++;?></td>
                             <td align="left"><?=$fetch['booker_name'];?></td>
-                            <td><?=$fetch['createAt'];?></td>
-                            <td><?=$fetch['booking_status'];?></td>
+                            <td><?=$fetch['room_number'];?></td>
+                            <td><?=$fetch['check_in_date'];?></td>
+                            <td><?=$fetch['check_out_date'];?></td>
                             <td align="center"><a title="ตรวจสอบข้อมูลการชำระเงิน" href="bookingApprove.php?id=<?=$fetch['booking_id'];?>"><i class='bx bx-edit-alt'></i></a></td>
                         </tr>
                     <?php } ?>

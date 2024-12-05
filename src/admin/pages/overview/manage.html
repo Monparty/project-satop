@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บันทึกข้อมูลการเข้าพัก</title>
+    <link rel="icon" type="image/x-icon" href="../../../../public/imgs/logosatop.png">
+    <link rel="stylesheet" href="../../../../public/css/main.css">
+    <link rel="stylesheet" href="../../../../public/css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .headersection {
+
+            i {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <?php include("../../layouts/header.php"); ?>
+    <?php include("../../layouts/sidebar.php"); ?>
+    <div class="breadcrumbsAdmin">
+        <a href="../dashboard/dashboard.php">หน้าแรก</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a href="roomList.php">ภาพรวมห้องพัก</a>
+        <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
+        <a>บันทึกข้อมูลการเข้าพัก</a>
+    </div>
+    <form action="manage.php" method="post">
+        <main class="containerAdmin">
+            <section class="formSection">
+                <h2 style="margin-bottom:10px;">บันทึกข้อมูลการเข้าพัก</h2>
+                <div class="form">
+                    <input type="hidden" name="bed_id" value="<?=$bed_id;?>">
+                    <input type="hidden" name="booking_id" value="<?=$row['booking_id'];?>">
+                    <div class="headersection">
+                        <i class='bx bx-building'></i>
+                        <h4>ข้อมูลห้องพัก</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เลขห้องพัก</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="room_number" value="<?=$row['room_number'];?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ประเภทห้องพัก</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="room_type" value="<?=$row['name'];?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ชั้น</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="" value="<?=$row['floor'];?>" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="headersection">
+                        <i class='bx bx-user'></i>
+                        <h4>ข้อมูลผู้เข้าพัก</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ชื่อผู้เข้าพัก <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="booker_name" value="<?=$row['booker_name'];?>" required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เบอร์โทร</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="phone" value="<?=$row['phone'];?>">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เพศ</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <select name="gender">
+                                <option value="">-</option>
+                                <option value="ชาย" <?php echo ($gender=='ชาย') ? 'selected' : ''; ?>>ชาย</option>
+                                <option value="หญิง" <?php echo ($gender=='หญิง') ? 'selected' : ''; ?>>หญิง</option>
+                                <option value="อื่นๆ" <?php echo ($gender=='อื่นๆ') ? 'selected' : ''; ?>>อื่นๆ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>สัญชาติ</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="nationality" value="<?=$row['nationality'];?>">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เลขบัตรประชาชน</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="id_card" value="<?=$row['id_card'];?>">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>อีเมล</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="email" value="<?=$row['email'];?>">
+                        </div>
+                    </div>
+                    <div class="formRow valignTop">
+                        <div class="formTitle">
+                            <h4>ที่อยู่</h4>
+                        </div>
+                        <div class="formInput">
+                            <textarea name="address"><?=$row['address'];?></textarea>
+                        </div>
+                    </div>
+                    <div class="headersection">
+                        <i class='bx bx-calendar-check'></i>
+                        <h4>ข้อมูลการจอง</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>Check in <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="date" name="check_in_date" value="<?=$row['check_in_date'];?>" required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>Check-out</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="date" name="check_out_date" value="<?=$row['check_out_date'];?>">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>จำนวนผู้เข้าพัก</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="amountpeople" value="<?=$row['amountpeople'];?>">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>วิธีการชำระเงิน</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <select name="payment">
+                                <option value="">-</option>
+                                <option value="เงินสด" <?php echo ($payment=='เงินสด') ? 'selected' : ''; ?>>เงินสด</option>
+                                <option value="โอนเงิน" <?php echo ($payment=='โอนเงิน') ? 'selected' : ''; ?>>โอนเงิน</option>
+                                <option value="บัตรเครดิต" <?php echo ($payment=='บัตรเครดิต') ? 'selected' : ''; ?>>บัตรเครดิต</option>
+                                <option value="อื่นๆ" <?php echo ($payment=='อื่นๆ') ? 'selected' : ''; ?>>อื่นๆ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow valignTop">
+                        <div class="formTitle">
+                            <h4>หมายเหตุ</h4>
+                        </div>
+                        <div class="formInput">
+                            <textarea name="remark"><?=$row['remark'];?></textarea>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>สถานะเตียงปัจจุบัน</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" value="<?=($_GET['state']==$_GET['state']) ? $_GET['state'] : ''; ?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formBtn">
+                        <button type="submit" class="button gray w120" name="empty">เตียงว่าง</button>
+                        <button type="submit" class="button w120" name="book" style="background-color: var(--statusBlue);">เตียงติดจอง</button>
+                        <button type="submit" class="button w120" name="check-in" style="background-color: var(--statusGreen);">Check-in</button>
+                        <button type="submit" class="button w120" name="check-out" style="background-color: var(--statusRed);">Check-out</button>
+                        <button type="submit" class="button w120" name="clean" style="background-color: var(--statusYell);">ทำความสะอาด</button>
+                    </div>
+                    <div class="formBtn">
+                        <button type="submit" class="button green w120" name="update"><i class='bx bx-save'></i> แก้ไข</button>
+                        <button type="button" class="button gray w120" onclick="history.back()">ยกเลิก</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </form>
+    <script src="../../js/script.js"></script>
+</body>
+</html>

@@ -27,7 +27,7 @@
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
         <a>บันทึกข้อมูลการเข้าพัก</a>
     </div>
-    <form action="editRoom.php" method="post" enctype="multipart/form-data">
+    <form action="add.php" method="post">
         <main class="containerAdmin">
             <section class="formSection">
                 <h2 style="margin-bottom:10px;">บันทึกข้อมูลการเข้าพัก</h2>
@@ -42,7 +42,7 @@
                             <h4>เลขห้องพัก</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="room_number" value="<?=$room_num;?>" readonly>
+                            <input type="text" name="room_number" value="<?=$row['room_number'];?>" readonly>
                         </div>
                     </div>
                     <div class="formRow">
@@ -50,7 +50,7 @@
                             <h4>ประเภทห้องพัก</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="room_type" value="<?=$name;?>" readonly>
+                            <input type="text" name="room_type" value="<?=$row['name'];?>" readonly>
                         </div>
                     </div>
                     <div class="formRow">
@@ -58,7 +58,7 @@
                             <h4>ชั้น</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="" value="<?=$floor;?>" readonly>
+                            <input type="text" name="" value="<?=$row['floor'];?>" readonly>
                         </div>
                     </div>
                     
@@ -71,8 +71,7 @@
                             <h4>ชื่อผู้เข้าพัก <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="booker_name" value="<?=$booker_name;?>">
-                            <!-- แก้หน้านี้ให้ถูกที ยังบันทึกไม่ได้ -->
+                            <input type="text" name="booker_name" required>
                         </div>
                     </div>
                     <div class="formRow">
@@ -80,7 +79,7 @@
                             <h4>เบอร์โทร</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="number" name="phone" value="<?=$phone;?>">
+                            <input type="number" name="phone">
                         </div>
                     </div>
                     <div class="formRow">
@@ -101,7 +100,7 @@
                             <h4>สัญชาติ</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="nationality" value="<?=$nationality;?>">
+                            <input type="text" name="nationality">
                         </div>
                     </div>
                     <div class="formRow">
@@ -109,7 +108,7 @@
                             <h4>เลขบัตรประชาชน</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="number" name="id_card" value="<?=$id_card;?>">
+                            <input type="number" name="id_card">
                         </div>
                     </div>
                     <div class="formRow">
@@ -117,7 +116,7 @@
                             <h4>อีเมล</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="text" name="email" value="<?=$email;?>">
+                            <input type="text" name="email">
                         </div>
                     </div>
                     <div class="formRow valignTop">
@@ -125,7 +124,7 @@
                             <h4>ที่อยู่</h4>
                         </div>
                         <div class="formInput">
-                            <textarea name="address"><?=$address;?></textarea>
+                            <textarea name="address"></textarea>
                         </div>
                     </div>
                     <div class="headersection">
@@ -137,7 +136,7 @@
                             <h4>Check in <span class="force">*</span></h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="date" name="check_in_date" value="<?=$check_in_date;?>">
+                            <input type="date" name="check_in_date" required>
                         </div>
                     </div>
                     <div class="formRow">
@@ -145,7 +144,7 @@
                             <h4>Check-out</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="date" name="check_out_date" value="<?=$check_out_date;?>">
+                            <input type="date" name="check_out_date">
                         </div>
                     </div>
                     <div class="formRow">
@@ -153,7 +152,7 @@
                             <h4>จำนวนผู้เข้าพัก</h4>
                         </div>
                         <div class="formInput w300">
-                            <input type="number" name="amountpeople" value="<?=$amountpeople;?>">
+                            <input type="number" name="amountpeople">
                         </div>
                     </div>
                     <div class="formRow">
@@ -175,23 +174,7 @@
                             <h4>หมายเหตุ</h4>
                         </div>
                         <div class="formInput">
-                            <textarea name="remark"><?=$remark;?></textarea>
-                        </div>
-                    </div>
-
-                    <div class="headersection">
-                        <i class='bx bx-list-check'></i>
-                        <h4>สถานะ</h4>
-                    </div>
-                    <div class="formRow">
-                        <div class="formTitle">
-                            <h4>สถานะ <span class="force">*</span></h4>
-                        </div>
-                        <div class="boxCheckbox">
-                            <input type="radio" name="status[]" id="Active" value="Active" <?php echo ($status=='Active') ? 'checked' : ''; ?>>
-                            <label for="Active">ใช้งาน</label>
-                            <input type="radio" name="status[]" id="Inactive" value="Inactive" <?php echo ($status=='Inactive') ? 'checked' : ''; ?>>
-                            <label for="Inactive">ไม่ใช้งาน</label>
+                            <textarea name="remark"></textarea>
                         </div>
                     </div>
                     <div class="formBtn">

@@ -66,23 +66,23 @@
         <h2 style="margin-bottom:10px;">ภาพรวมห้องพัก</h2>
         <div class="headersection">
             <div class="descIcon">
-                <i class='bx bxs-bed' style="color: #FFFFFF;"></i>
+                <i class='bx bxs-bed' style="color: var(--statusWhite);"></i>
                 <p>เตียงว่าง</p>
             </div>
             <div class="descIcon">
-                <i class='bx bxs-bed' style="color: #4285F4;"></i>
+                <i class='bx bxs-bed' style="color: var(--statusBlue);"></i>
                 <p>เตียงติดจอง</p>
             </div>
             <div class="descIcon">
-                <i class='bx bxs-bed' style="color: #34A853;"></i>
+                <i class='bx bxs-bed' style="color: var(--statusGreen);"></i>
                 <p>Check-in</p>
             </div>
             <div class="descIcon">
-                <i class='bx bxs-bed' style="color: #EA4335;"></i>
+                <i class='bx bxs-bed' style="color: var(--statusRed);"></i>
                 <p>Check-out</p>
             </div>
             <div class="descIcon">
-                <i class='bx bxs-bed' style="color: #FBBC05;"></i>
+                <i class='bx bxs-bed' style="color: var(--statusYell);"></i>
                 <p>รอทำความสะอาด</p>
             </div>
         </div>
@@ -100,8 +100,18 @@
                         // ดึงข้อมูลเตียงมาแสดง
                         $sql_beds = "SELECT * FROM beds WHERE room_number = '$room_num;'";
                         $query_beds = mysqli_query( $c, $sql_beds );
-                        foreach($query_beds as $bed) { ?>
-                            <a href="editRoom?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>"><i class='bx bxs-bed' style="color: <?=($bed['status_bed'] == 'มีผู้เข้าพัก') ? '#0866FF' : ''; ?>;"></i></a>
+                        foreach($query_beds as $bed) { 
+                            if ($bed['status_bed'] == '') { ?>
+                                <a href="add?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state="><i class='bx bxs-bed' style="color: var(--statusWhite);"></i></a>
+                            <?php } else if ($bed['status_bed'] == 'เตียงติดจอง') { ?>
+                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=book"><i class='bx bxs-bed' style="color: var(--statusBlue);"></i></a>
+                            <?php } else if ($bed['status_bed'] == 'check-in') { ?>
+                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=check-in"><i class='bx bxs-bed' style="color: var(--statusGreen);"></i></a>
+                            <?php } else if ($bed['status_bed'] == 'check-out') { ?>
+                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=check-out"><i class='bx bxs-bed' style="color: var(--statusRed);"></i></a>
+                                <?php } else if ($bed['status_bed'] == 'รอทำความสะอาด') { ?>
+                                <a href="manage?bed_id=<?=$bed['bed_id'];?>&room_number=<?=$bed['room_number'];?>&state=clean"><i class='bx bxs-bed' style="color: var(--statusYell);"></i></a>
+                            <?php } ?>
                         <?php } ?>
                     </div>
                 </div>

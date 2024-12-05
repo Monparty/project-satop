@@ -3,7 +3,7 @@ include("../../../../config/config.php");
 session_start();
 
 $booking_id = $_REQUEST['id'];
-$sql = "SELECT * FROM bookings INNER JOIN rooms ON rooms.room_id = bookings.room_id WHERE bookings.booking_id = $booking_id";
+$sql = "SELECT * FROM bookings WHERE booking_id = $booking_id";
 $result = mysqli_query($c, $sql);
 $fetch = mysqli_fetch_array($result);
 extract($fetch);

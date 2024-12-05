@@ -5,16 +5,16 @@ session_start();
 // ใช้สำหรับแสดงข้อมูลตาม ID ที่เลือกมา
 $bed_id = $_REQUEST['bed_id'];
 $room_num = $_REQUEST['room_number'];
-$sql = "SELECT rooms.*, beds.*, bookings.*
-FROM rooms
-LEFT JOIN beds ON rooms.room_number = beds.room_number
-LEFT JOIN bookings ON rooms.room_number = bookings.room_number WHERE bed_id=$bed_id";
+
+// ดึงข้อมูลจากตาราง rooms มาแสดง
+$sql = "SELECT beds.*, rooms.* FROM beds LEFT JOIN rooms ON beds.room_number = rooms.room_number WHERE bed_id=$bed_id";
 $result = mysqli_query($c, $sql);
 $row = mysqli_fetch_array($result);
 extract($row);
 
 // ใช้สำหรับ Update ข้อมูลจะทำงานเมื่อกดปุ่ม update
 if (isset($_REQUEST['update'])) {
+    $bed_id = $_POST['bed_id'];
     $check_in_date = $_POST['check_in_date'];
     $check_out_date = $_POST['check_out_date'];
     $email = $_POST['email'];
@@ -31,7 +31,9 @@ if (isset($_REQUEST['update'])) {
     $amountpeople = $_POST['amountpeople'];
     $room_type = $_POST['room_type'];
 
-    $status_bed = "มีผู้เข้าพัก";
+    $status_bed = "check-in";
+
+    //empty book check-in check-out clean
 
     // query UPDATE beds
     $sql_update_beds = "UPDATE beds SET status_bed=:status_bed, updateAt=CURRENT_TIMESTAMP WHERE bed_id=$bed_id";
@@ -40,11 +42,12 @@ if (isset($_REQUEST['update'])) {
     $stmt->execute();
 
     // query INSERT bookings
-    $sql_insert_bookings = "INSERT INTO bookings (check_in_date, check_out_date, email, booker_name, phone, remark, room_number, check_in_at, gender, nationality, id_card, address, payment, room_type, amountpeople)
-    VALUES (:check_in_date, :check_out_date, :email, :booker_name, :phone, :remark, :room_number, CURRENT_TIMESTAMP, :gender, :nationality, :id_card, :address, :payment, :room_type, :amountpeople)";
+    $sql_insert_bookings = "INSERT INTO bookings (bed_id, check_in_date, check_out_date, email, booker_name, phone, remark, room_number, check_in_at, gender, nationality, id_card, address, payment, room_type, amountpeople)
+    VALUES (:bed_id, :check_in_date, :check_out_date, :email, :booker_name, :phone, :remark, :room_number, CURRENT_TIMESTAMP, :gender, :nationality, :id_card, :address, :payment, :room_type, :amountpeople)";
 
     $stmt2 = $conn->prepare($sql_insert_bookings);
  
+    $stmt2->bindParam(":bed_id", $bed_id);
     $stmt2->bindParam(":check_in_date", $check_in_date);
     $stmt2->bindParam(":check_out_date", $check_out_date);
     $stmt2->bindParam(":email", $email);
@@ -79,5 +82,5 @@ if (isset($_REQUEST['update'])) {
     }
 }
 
-include ("editRoom.html");
+include ("add.html");
 ?>
