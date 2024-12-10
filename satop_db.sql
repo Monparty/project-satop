@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2024 at 06:30 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Dec 10, 2024 at 09:19 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,14 +29,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bank_info` (
   `id` int(11) NOT NULL,
-  `bank_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `account_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `account_number` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `bank_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `account_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `account_number` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
   `update_at` datetime DEFAULT NULL,
-  `status` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
+  `status` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `bank_image` longblob DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -51,16 +51,16 @@ CREATE TABLE `beds` (
   `createAt` datetime NOT NULL,
   `updateAt` datetime NOT NULL,
   `status_bed` varchar(50) DEFAULT 'เตียงว่าง'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `beds`
 --
 
 INSERT INTO `beds` (`bed_id`, `room_number`, `status`, `createAt`, `updateAt`, `status_bed`) VALUES
-(74, 102, 'Active', '2024-12-05 21:31:09', '2024-12-05 22:31:47', 'check-in'),
+(74, 102, 'Active', '2024-12-05 21:31:09', '2024-12-10 14:11:38', 'check-out'),
 (75, 201, 'Active', '2024-12-05 21:31:26', '0000-00-00 00:00:00', 'เตียงว่าง'),
-(76, 202, 'Active', '2024-12-05 21:31:40', '0000-00-00 00:00:00', 'เตียงว่าง'),
+(76, 202, 'Active', '2024-12-05 21:31:40', '2024-12-10 15:09:33', 'check-in'),
 (77, 203, 'Active', '2024-12-05 21:31:48', '2024-12-05 22:35:31', 'รอทำความสะอาด'),
 (78, 203, 'Active', '2024-12-05 21:31:48', '0000-00-00 00:00:00', 'เตียงว่าง'),
 (79, 203, 'Active', '2024-12-05 21:31:48', '0000-00-00 00:00:00', 'เตียงว่าง'),
@@ -97,21 +97,24 @@ CREATE TABLE `bookings` (
   `amountpeople` int(20) DEFAULT NULL,
   `room_type` varchar(100) DEFAULT NULL,
   `bed_id` varchar(20) DEFAULT NULL,
-  `updateAt` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updateAt` datetime DEFAULT NULL,
+  `price` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`booking_id`, `check_in_date`, `check_out_date`, `email`, `booker_name`, `phone`, `remark`, `room_number`, `check_in_at`, `check_out_at`, `gender`, `nationality`, `id_card`, `address`, `payment`, `amountpeople`, `room_type`, `bed_id`, `updateAt`) VALUES
-(315, '2024-12-05', '2024-12-08', 'sukontaprapun@gmail.com', 'นาย102', '0943030401', 'นาย102', '102', '2024-12-05 21:41:49', NULL, 'ชาย', 'ไทย', '123', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 1, 'ห้อง Private พัดลม', '74', NULL),
-(316, '2024-12-05', '2024-12-13', 'sukontaprapun@gmail.com', 'นาย 102 คนที่ 2', '0943030401', 'นาย 102 คนที่ 2', '102', '2024-12-05 22:16:32', NULL, '', '', '', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 2, 'ห้อง Private พัดลม', '74', NULL),
-(317, '2024-12-12', '0000-00-00', '', 'นาย 303 เตียง 1', '', '', '203', '2024-12-05 22:18:56', NULL, '', '', '', '', 'เงินสด', 0, 'ห้องพักรวม', '77', NULL),
-(318, '2024-12-19', '2024-12-06', '', 'นาย 303 เตียง 1 คน 2', '', '', '203', '2024-12-05 22:19:27', NULL, '', '', '', '', 'เงินสด', 0, 'ห้องพักรวม', '77', '2024-12-05 22:35:43'),
-(319, '2024-12-06', '0000-00-00', '', 'นาย 203 เตียง 4 คน 1', '', '', '203', '2024-12-05 22:21:08', NULL, '', '', '', '', 'เงินสด', 0, 'ห้องพักรวม', '80', NULL),
-(320, '2024-12-21', '2024-12-28', '', 'นาย 203 เตียง 4 คน 2', '', '', '203', '2024-12-05 22:21:25', NULL, '', '', '', 'ที่อยู่', 'เงินสด', 0, 'ห้องพักรวม', '80', '2024-12-05 22:22:46'),
-(321, '2024-12-07', '0000-00-00', '', 'นาย 102 คนที่ 3', '', '', '102', '2024-12-05 22:31:47', NULL, '', '', '', '', 'เงินสด', 0, 'ห้อง Private พัดลม', '74', NULL);
+INSERT INTO `bookings` (`booking_id`, `check_in_date`, `check_out_date`, `email`, `booker_name`, `phone`, `remark`, `room_number`, `check_in_at`, `check_out_at`, `gender`, `nationality`, `id_card`, `address`, `payment`, `amountpeople`, `room_type`, `bed_id`, `updateAt`, `price`) VALUES
+(315, '2024-12-05', '2024-12-08', 'sukontaprapun@gmail.com', 'นาย102', '0943030401', 'นาย102', '102', '2024-12-05 21:41:49', NULL, 'ชาย', 'ไทย', '123', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 1, 'ห้อง Private พัดลม', '74', NULL, NULL),
+(316, '2024-12-05', '2024-12-13', 'sukontaprapun@gmail.com', 'นาย 102 คนที่ 2', '0943030401', 'นาย 102 คนที่ 2', '102', '2024-12-05 22:16:32', NULL, '', '', '', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 2, 'ห้อง Private พัดลม', '74', NULL, NULL),
+(317, '2024-12-12', '0000-00-00', '', 'นาย 303 เตียง 1', '', '', '203', '2024-12-05 22:18:56', NULL, '', '', '', '', 'เงินสด', 0, 'ห้องพักรวม', '77', NULL, NULL),
+(318, '2024-12-19', '2024-12-06', '', 'นาย 303 เตียง 1 คน 2', '', '', '203', '2024-12-05 22:19:27', NULL, '', '', '', '', 'เงินสด', 0, 'ห้องพักรวม', '77', '2024-12-05 22:35:43', NULL),
+(319, '2024-12-06', '0000-00-00', '', 'นาย 203 เตียง 4 คน 1', '', '', '203', '2024-12-05 22:21:08', NULL, '', '', '', '', 'เงินสด', 0, 'ห้องพักรวม', '80', NULL, NULL),
+(320, '2024-12-21', '2024-12-28', '', 'นาย 203 เตียง 4 คน 2', '', '', '203', '2024-12-05 22:21:25', NULL, '', '', '', 'ที่อยู่', 'เงินสด', 0, 'ห้องพักรวม', '80', '2024-12-05 22:22:46', NULL),
+(321, '2024-12-07', '0000-00-00', '', 'นาย 102 คนที่ 3', '', '', '102', '2024-12-05 22:31:47', NULL, '', '', '', '', 'เงินสด', 0, 'ห้อง Private พัดลม', '74', NULL, NULL),
+(322, '2024-12-10', '2024-12-11', 'sukontaprapun@gmail.com', 'นายสุนิติ', '0943030401', 'ทดสอบ', '202', '2024-12-10 14:14:28', NULL, 'ชาย', 'ไทย', '1129901714505', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 1, 'ห้อง Private แอร์', '76', NULL, NULL),
+(323, '2024-12-10', '2024-12-11', 'sukontaprapun@gmail.com', 'น้ำฝน', '0943030401', 'ทดสอบฝน', '202', '2024-12-10 15:09:33', NULL, 'หญิง', 'ไทย', '123', '3/15 No.1 Nonthaburi1 Road, Suan Yai Subdistrict, Muang District, Nonthaburi, 11000', 'เงินสด', 2, 'ห้อง Private แอร์', '76', NULL, '500');
 
 -- --------------------------------------------------------
 
@@ -126,7 +129,7 @@ CREATE TABLE `facility_info` (
   `status` varchar(20) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
   `update_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `facility_info`
@@ -144,7 +147,7 @@ INSERT INTO `facility_info` (`id`, `name`, `image_svg`, `status`, `create_at`, `
 CREATE TABLE `highlight_info` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `highlight_info`
@@ -174,7 +177,7 @@ CREATE TABLE `rooms` (
   `updateAT` datetime DEFAULT NULL,
   `floor` int(10) DEFAULT NULL,
   `room_number` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `rooms`
@@ -202,7 +205,7 @@ CREATE TABLE `room_type` (
   `update_at` datetime DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL,
   `code` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `room_type`
@@ -233,7 +236,7 @@ CREATE TABLE `users` (
   `update_at` datetime DEFAULT NULL,
   `status` varchar(255) DEFAULT 'Active',
   `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -314,7 +317,7 @@ ALTER TABLE `beds`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=324;
 
 --
 -- AUTO_INCREMENT for table `facility_info`

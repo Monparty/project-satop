@@ -22,6 +22,7 @@ if (isset($_REQUEST['update'])) {
     $phone = $_POST['phone'];
     $remark = $_POST['remark'];
     $room_number = $_POST['room_number'];
+    $price = $_POST['price'];
     //$car_number = $_POST['car_number'];
     $gender = $_POST['gender'];
     $nationality = $_POST['nationality'];
@@ -42,8 +43,8 @@ if (isset($_REQUEST['update'])) {
     $stmt->execute();
 
     // query INSERT bookings
-    $sql_insert_bookings = "INSERT INTO bookings (bed_id, check_in_date, check_out_date, email, booker_name, phone, remark, room_number, check_in_at, gender, nationality, id_card, address, payment, room_type, amountpeople)
-    VALUES (:bed_id, :check_in_date, :check_out_date, :email, :booker_name, :phone, :remark, :room_number, CURRENT_TIMESTAMP, :gender, :nationality, :id_card, :address, :payment, :room_type, :amountpeople)";
+    $sql_insert_bookings = "INSERT INTO bookings (bed_id, check_in_date, check_out_date, email, booker_name, phone, remark, room_number, price, check_in_at, gender, nationality, id_card, address, payment, room_type, amountpeople)
+    VALUES (:bed_id, :check_in_date, :check_out_date, :email, :booker_name, :phone, :remark, :room_number, :price, CURRENT_TIMESTAMP, :gender, :nationality, :id_card, :address, :payment, :room_type, :amountpeople)";
 
     $stmt2 = $conn->prepare($sql_insert_bookings);
  
@@ -55,6 +56,7 @@ if (isset($_REQUEST['update'])) {
     $stmt2->bindParam(":phone", $phone);
     $stmt2->bindParam(":remark", $remark);
     $stmt2->bindParam(":room_number", $room_number);
+    $stmt2->bindParam(":price", $price);
     //$stmt->bindParam(":car_number", $car_number);
     $stmt2->bindParam(":gender", $gender);
     $stmt2->bindParam(":nationality", $nationality);

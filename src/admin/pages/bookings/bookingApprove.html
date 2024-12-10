@@ -9,11 +9,6 @@
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        .boxPayment {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 20px;
-        }
         
         .formBtn {
             padding: 0 20px;
@@ -41,7 +36,7 @@
                         <h4>รายละเอียดการชำระเงิน</h4>
                     </div>
                     <div class="boxPayment">
-                        <div class="slipImage" <?php echo ($upload_slip_at=='') ? 'style="visibility: hidden;"' : '';?>>
+                        <div class="slipImage" style="display: none;" <?php echo ($upload_slip_at=='') ? 'style="visibility: hidden;"' : '';?>>
                             <?=$showimg[$i];?>
                         </div>
                         <div class="paymentDetail borderBox">

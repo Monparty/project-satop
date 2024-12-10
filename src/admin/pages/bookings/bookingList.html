@@ -21,36 +21,36 @@
         <h2 style="margin-bottom:10px;">ข้อมูลการจองห้องพัก</h2>
         <div class="boxSearch">
             <div class="searchItem">
-                <input type="text" name="" placeholder="ค้นหารายการ...">
+                <input type="text" name="" id="inputFilter" placeholder="ค้นหารายการ..." onkeyup="filterTable()">
             </div>
         </div>
 
         <div class="containerTable">
-            <table class="table" border="0">
+            <table class="table">
                 <thead>
                     <tr>
                         <td width="6%">ลำดับ</td>
                         <td>ชื่อผู้จองห้องพัก</td>
-                        <td width="20%">ประเภทห้องพัก</td>    
+                        <td width="18%">ประเภทห้องพัก</td>    
                         <td width="10%">เลขห้องพัก</td>
                         <td width="10%">Check-in</td>
                         <td width="10%">Check-out</td>
-                        <td width="12%">วันที่บันทึก</td>
+                        <td width="16%">วันที่บันทึก</td>
                         <td width="5%"></td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="thisTable">
                 <?php
                     $count = 1;
                     foreach($query as $fetch) { ?>
                         <tr align="center">
                             <td><?=$count++;?></td>
                             <td align="left"><?=$fetch['booker_name'];?></td>
-                            <td align="left"><?=$fetch['room_type'];?></td>
+                            <td><?=$fetch['room_type'];?></td>
                             <td><?=$fetch['room_number'];?></td>
                             <td><?=date_format(date_create($fetch['check_in_date']), 'd/m/Y')?></td>
                             <td><?=date_format(date_create($fetch['check_out_date']), 'd/m/Y')?></td>
-                            <td><?=date_format(date_create($fetch['updateAt']), 'd/m/Y H:i:s')?></td>
+                            <td><?=date_format(date_create($fetch['check_in_at']), 'd/m/Y H:i:s')?></td>
                             <td align="center"><a title="ตรวจสอบข้อมูลการชำระเงิน" href="bookingApprove.php?id=<?=$fetch['booking_id'];?>"><i class='bx bx-edit-alt'></i></a></td>
                         </tr>
                     <?php } ?>
