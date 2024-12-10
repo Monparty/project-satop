@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/main.css">
-<link rel="icon" type="image/x-icon" href="imgs/logoIcon.png">
-<title>Punthai Homestay</title>
+<link rel="stylesheet" href="public/css/main.css">
+<link rel="icon" type="image/x-icon" href="public/imgs/logosatop.png">
+<title>Satop travelers Guesthouse</title>
 <style>
     .lds-spinner {
         color: official;

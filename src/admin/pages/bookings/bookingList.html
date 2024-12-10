@@ -51,7 +51,7 @@
                             <td><?=date_format(date_create($fetch['check_in_date']), 'd/m/Y')?></td>
                             <td><?=date_format(date_create($fetch['check_out_date']), 'd/m/Y')?></td>
                             <td><?=date_format(date_create($fetch['check_in_at']), 'd/m/Y H:i:s')?></td>
-                            <td align="center"><a title="ตรวจสอบข้อมูลการชำระเงิน" href="bookingApprove.php?id=<?=$fetch['booking_id'];?>"><i class='bx bx-edit-alt'></i></a></td>
+                            <td align="left"><a title="read more" href="bookingApprove?id=<?=$fetch['booking_id'];?>"><i class='bx bx-edit-alt'></i></a></td>
                         </tr>
                     <?php } ?>
                 </tbody>

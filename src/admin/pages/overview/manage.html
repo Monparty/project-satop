@@ -8,14 +8,6 @@
     <link rel="stylesheet" href="../../../../public/css/main.css">
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        .headersection {
-
-            i {
-                font-size: 20px;
-            }
-        }
-    </style>
 </head>
 <body>
     <?php include("../../layouts/header.php"); ?>
@@ -195,10 +187,23 @@
                     </div>
                     <div class="formBtn">
                         <button type="submit" class="button gray w120" name="empty">เตียงว่าง</button>
-                        <button type="submit" class="button w120" name="book" style="background-color: var(--statusBlue);">จองเตียง</button>
-                        <button type="submit" class="button w120" name="check-in" style="background-color: var(--statusGreen);">Check-in</button>
-                        <button type="submit" class="button w120" name="check-out" style="background-color: var(--statusRed);">Check-out</button>
-                        <button type="submit" class="button w120" name="clean" style="background-color: var(--statusYell);">ทำความสะอาด</button>
+                        <?php if ($state=='b') { ?>
+                            <button type="submit" class="button w120" name="check-in" style="background-color: var(--statusGreen);">Check-in</button>
+                            <button type="submit" class="button w120" name="check-out" style="background-color: var(--statusRed);">Check-out</button>
+                            <button type="submit" class="button w120" name="clean" style="background-color: var(--statusYell);">ทำความสะอาด</button>
+                        <?php } elseif ($state=='i') {  ?>
+                            <button type="submit" class="button w120" name="book" style="background-color: var(--statusBlue);">จองเตียง</button>
+                            <button type="submit" class="button w120" name="check-out" style="background-color: var(--statusRed);">Check-out</button>
+                            <button type="submit" class="button w120" name="clean" style="background-color: var(--statusYell);">ทำความสะอาด</button>
+                        <?php } elseif ($state=='o') {  ?>
+                            <button type="submit" class="button w120" name="book" style="background-color: var(--statusBlue);">จองเตียง</button>
+                            <button type="submit" class="button w120" name="check-in" style="background-color: var(--statusGreen);">Check-in</button>
+                            <button type="submit" class="button w120" name="clean" style="background-color: var(--statusYell);">ทำความสะอาด</button>
+                        <?php } elseif ($state=='c') {  ?>
+                            <button type="submit" class="button w120" name="book" style="background-color: var(--statusBlue);">จองเตียง</button>
+                            <button type="submit" class="button w120" name="check-in" style="background-color: var(--statusGreen);">Check-in</button>
+                            <button type="submit" class="button w120" name="check-out" style="background-color: var(--statusRed);">Check-out</button>
+                        <?php } ?>
                     </div>
                     <div class="formBtn">
                         <button type="submit" class="button green w120" name="update"><i class='bx bx-save'></i> แก้ไข</button>

@@ -42,5 +42,14 @@ $sql_room_r = "SELECT * FROM bookings WHERE room_type = 'ห้องพัก�
 $query_room_r = mysqli_query( $c, $sql_room_r);
 $total_room_r = mysqli_num_rows($query_room_r);
 
+// รายได้รวมทั้งหมดของวันนี้
+$sql_total_revenue = "SELECT SUM(price) AS total_revenue
+                       FROM bookings
+                       WHERE check_in_date = CURDATE()";
+$result = mysqli_query($c, $sql_total_revenue);
+$row = mysqli_fetch_assoc($result);
+$total_revenue = $row['total_revenue'];
+
+
 include ("dashboard.html");
 ?>

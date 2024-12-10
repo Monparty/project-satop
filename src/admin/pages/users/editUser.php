@@ -1,5 +1,5 @@
 <?php 
-include("../../../config/config.php");
+include("../../../../config/config.php");
 session_start();
 
 // ใช้สำหรับแสดงข้อมูลตาม ID ที่เลือกมา

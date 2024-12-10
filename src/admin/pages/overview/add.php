@@ -34,8 +34,6 @@ if (isset($_REQUEST['update'])) {
 
     $status_bed = "check-in";
 
-    //empty book check-in check-out clean
-
     // query UPDATE beds
     $sql_update_beds = "UPDATE beds SET status_bed=:status_bed, updateAt=CURRENT_TIMESTAMP WHERE bed_id=$bed_id";
     $stmt = $conn->prepare($sql_update_beds);
@@ -43,8 +41,8 @@ if (isset($_REQUEST['update'])) {
     $stmt->execute();
 
     // query INSERT bookings
-    $sql_insert_bookings = "INSERT INTO bookings (bed_id, check_in_date, check_out_date, email, booker_name, phone, remark, room_number, price, check_in_at, gender, nationality, id_card, address, payment, room_type, amountpeople)
-    VALUES (:bed_id, :check_in_date, :check_out_date, :email, :booker_name, :phone, :remark, :room_number, :price, CURRENT_TIMESTAMP, :gender, :nationality, :id_card, :address, :payment, :room_type, :amountpeople)";
+    $sql_insert_bookings = "INSERT INTO bookings (bed_id, check_in_date, check_out_date, email, floor, booker_name, phone, remark, room_number, price, check_in_at, gender, nationality, id_card, address, payment, room_type, amountpeople)
+    VALUES (:bed_id, :check_in_date, :check_out_date, :email, :floor, :booker_name, :phone, :remark, :room_number, :price, CURRENT_TIMESTAMP, :gender, :nationality, :id_card, :address, :payment, :room_type, :amountpeople)";
 
     $stmt2 = $conn->prepare($sql_insert_bookings);
  
@@ -52,6 +50,7 @@ if (isset($_REQUEST['update'])) {
     $stmt2->bindParam(":check_in_date", $check_in_date);
     $stmt2->bindParam(":check_out_date", $check_out_date);
     $stmt2->bindParam(":email", $email);
+    $stmt2->bindParam(":floor", $floor);
     $stmt2->bindParam(":booker_name", $booker_name);
     $stmt2->bindParam(":phone", $phone);
     $stmt2->bindParam(":remark", $remark);

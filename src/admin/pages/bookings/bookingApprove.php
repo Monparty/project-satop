@@ -5,24 +5,8 @@ session_start();
 $booking_id = $_REQUEST['id'];
 $sql = "SELECT * FROM bookings WHERE booking_id = $booking_id";
 $result = mysqli_query($c, $sql);
-$fetch = mysqli_fetch_array($result);
-extract($fetch);
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-
-
-
-foreach ($stmt as $i=>$fetch) {
-  
-  // แปลงข้อมูลรูปภาพจากฐานข้อมูลเป็นฐาน64
-  $image_base64[$i] = $fetch["slip_image"];
-
-  // แปลงข้อมูลรูปภาพจากฐาน64เป็นข้อมูลรูปภาพ
-  $image = base64_decode($image_base64[$i]);
-
-  // แสดงผลรูปภาพ
-  $showimg[$i] = '<img src="data:$image/png;base64,' . $image_base64[$i] . '" style="width: 100%; height: auto; object-fit: cover; border-radius: 4px;"/>';
-}
+$row = mysqli_fetch_array($result);
+extract($row);
 
 // ใช้สำหรับ Update ข้อมูลจะทำงานเมื่อกดปุ่ม update
 if (isset($_REQUEST['update'])) {

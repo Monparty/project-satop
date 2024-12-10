@@ -30,18 +30,25 @@
 
             & .dashInfo {
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 column-gap: 20px;
                 justify-content: space-between;
                 color: var(--white);
 
                 & i {
-                    font-size: 58px;
+                    font-size: 38px;
                     color: var(--blue);
+                    background-color: #F5F8FF;
+                    padding: 5px;
+                    border-radius: 5px;
                 }
 
                 & h4 {
                     white-space: nowrap;
+                }
+
+                h1 {
+                    letter-spacing: 2px;
                 }
             }
             
@@ -91,7 +98,7 @@
                 <div class="dashInfo">
                     <div class="boxInnfo">
                         <h1 class="bold count"><?=$total_bed_i?></h1>
-                        <h4>จำนวนการ Check-in</h4>
+                        <p>จำนวนการ Check-in</p>
                     </div>
                     <div class="boxIcon">
                         <i class='bx bx-log-in-circle'></i>
@@ -104,11 +111,11 @@
             <div class="dashCard">
                 <div class="dashInfo">
                     <div class="boxInnfo">
-                        <h1 class="bold count"><?=$total_bed_o?></h1>
-                        <h4>จำนวนการ Check-out</h4>
+                        <h1 class="bold count"><?=$total_bed_e?></h1>
+                        <p>จำนวนเตียงที่ว่าง</p>
                     </div>
                     <div class="boxIcon">
-                        <i class='bx bx-log-out-circle' ></i>
+                        <i class='bx bx-building-house'></i>
                     </div>
                 </div>
                 <div class="dashBtn">
@@ -118,18 +125,16 @@
             <div class="dashCard" style="background: var(--gray);">
                 <div class="dashInfo">
                     <div class="boxInnfo">
-                        <h1 class="bold count"><?=$total_bed_e?></h1>
-                        <h4>จำนวนเตียงที่ว่าง</h4>
+                        <h1 class="bold" style="color: #666666;">฿ <?=number_format($total_revenue);?></h1>
+                        <p style="color: #666666;">รายได้รวมทั้งหมดของวันนี้</p>
                     </div>
                     <div class="boxIcon">
-                        <i class='bx bx-building-house'></i>
+                        <i class='bx bx-line-chart'></i>
                     </div>
-                </div>
-                <div class="dashBtn">
-                    <a href="../../pages/overview/overview" class="button">ดูรายละเอียด <i class='bx bxs-log-in-circle'></i></a>
                 </div>
             </div>
         </div>
+        รายได้รวมทั้งหมดของวันนี้ 
         <div class="chart">
             <canvas id="myChart" style="max-width:50%"></canvas>
             <canvas id="myChart2" style="max-width:50%"></canvas>

@@ -189,6 +189,13 @@ select {
     border: 1px solid var(--gray);
     border-radius: 4px;
     outline: none;
+
+    &:disabled {
+        background: var(--lightGray);
+        border: none;
+        color: var(--black);
+        opacity: 1;
+    }
 }
 
 datalist {

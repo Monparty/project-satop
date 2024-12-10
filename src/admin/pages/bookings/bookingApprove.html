@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ตรวจสอบข้อมูลการชำระเงิน</title>
+    <title>รายละเอียดการจองห้องพัก</title>
     <link rel="icon" type="image/x-icon" href="../../../../public/imgs/logosatop.png">
     <link rel="stylesheet" href="../../../../public/css/main.css">
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        
-        .formBtn {
-            padding: 0 20px;
-        }
-    </style>
 </head>
 <body>
     <?php include("../../layouts/header.php"); ?>
@@ -23,96 +17,168 @@
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
         <a href="bookingList.php">ข้อมูลการจองห้องพัก</a>
         <i class='bx bx-chevron-right' style="color: var(--gray);"></i>
-        <a>ตรวจสอบข้อมูลการชำระเงิน</a>
+        <a>รายละเอียดการจองห้องพัก</a>
     </div>
     <form action="bookingApprove.php" method="post">
         <input type="hidden" name="id" value="<?=$booking_id;?>">
         <main class="containerAdmin">
             <section class="formSection">
-                <h2 style="margin-bottom:10px;">ตรวจสอบข้อมูลการชำระเงิน</h2>
+                <h2 style="margin-bottom:10px;">รายละเอียดการจองห้องพัก</h2>
                 <div class="form">
                     <div class="headersection">
-                        <i class='bx bx-info-circle'></i>
-                        <h4>รายละเอียดการชำระเงิน</h4>
+                        <i class='bx bx-building'></i>
+                        <h4>ข้อมูลห้องพัก</h4>
                     </div>
-                    <div class="boxPayment">
-                        <div class="slipImage" style="display: none;" <?php echo ($upload_slip_at=='') ? 'style="visibility: hidden;"' : '';?>>
-                            <?=$showimg[$i];?>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เลขห้องพัก</h4>
                         </div>
-                        <div class="paymentDetail borderBox">
-                            <div class="form">
-                                <div class="formRow">
-                                    <div class="formTitle">
-                                        <h4>ชื่อผู้เข้าพัก</h4>
-                                    </div>
-                                    <div class="formInput">
-                                        <input type="text" value="<?=$fetch['booker_name'];?>" readonly>
-                                    </div>
-                                </div>
-                                <div class="formRow">
-                                    <div class="formTitle">
-                                        <h4>อีเมล</h4>
-                                    </div>
-                                    <div class="formInput">
-                                        <input type="text" value="<?=$fetch['email'];?>" readonly>
-                                    </div>
-                                </div>
-                                <div class="formRow">
-                                    <div class="formTitle">
-                                        <h4>เบอร์โทร</h4>
-                                    </div>
-                                    <div class="formInput">
-                                        <input type="text" value="<?=$fetch['phone'];?>" readonly>
-                                    </div>
-                                </div>
-                                <div class="formRow">
-                                    <div class="formTitle">
-                                        <h4>วันที่เช็คอิน</h4>
-                                    </div>
-                                    <div class="formInput">
-                                        <input type="text" value="<?=$fetch['check_in_date'];?>" readonly>
-                                    </div>
-                                </div>
-                                <div class="formRow">
-                                    <div class="formTitle">
-                                        <h4>วันที่เช็คเอาท์</h4>
-                                    </div>
-                                    <div class="formInput">
-                                        <input type="text" value="<?=$fetch['check_out_date'];?>" readonly>
-                                    </div>
-                                </div>
-                                <div class="formRow">
-                                    <div class="formTitle">
-                                        <h4>ประเภทห้องพัก</h4>
-                                    </div>
-                                    <div class="formInput">
-                                        <input type="text" value="<?=$fetch['name'];?>" readonly>
-                                    </div>
-                                </div>
-                                <div class="formRow">
-                                    <div class="formTitle">
-                                        <h4>ราคาห้องพัก</h4>
-                                    </div>
-                                    <div class="formInput w300">
-                                        <input type="number" value="<?=$fetch['price'];?>" readonly>
-                                        <h5 class="formInputDesc">หน่วยเป็นบาท</h5>
-                                    </div>
-                                </div>
-                                <div class="formRow valignTop">
-                                    <div class="formTitle">
-                                        <h4>หมายเหตุ</h4>
-                                    </div>
-                                    <div class="formInput">
-                                        <textarea name="remark"><?=$fetch['remark'];?></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="formBtn">
-                                <button type="submit" name="cancel" class="button orange" <?php echo ($booking_status!='ชำระเงินเรียบร้อย / รอตรวจสอบ') ? 'style="display: none;"' : '';?>> การชำระเงินไม่ถูกต้อง</button>
-                                <button type="submit" name="update" class="button green" <?php echo ($booking_status!='ชำระเงินเรียบร้อย / รอตรวจสอบ') ? 'style="display: none;"' : '';?>> ยืนยันการชำระเงิน</button>
-                                <button type="button" class="button gray w100" onclick="history.back()">ยกเลิก</button>
-                            </div>
+                        <div class="formInput w300">
+                            <input type="text" name="room_number" value="<?=$row['room_number'];?>" readonly>
                         </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ประเภทห้องพัก</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="room_type" value="<?=$row['room_type'];?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ชั้น</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="" value="<?=$row['floor'];?>" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="headersection">
+                        <i class='bx bx-user'></i>
+                        <h4>ข้อมูลผู้เข้าพัก</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ชื่อผู้เข้าพัก <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="booker_name" value="<?=$row['booker_name'];?>" readonly required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เบอร์โทร</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="phone" value="<?=$row['phone'];?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เพศ</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <select name="gender" disabled>
+                                <option value="">-</option>
+                                <option value="ชาย" <?php echo ($gender=='ชาย') ? 'selected' : ''; ?>>ชาย</option>
+                                <option value="หญิง" <?php echo ($gender=='หญิง') ? 'selected' : ''; ?>>หญิง</option>
+                                <option value="อื่นๆ" <?php echo ($gender=='อื่นๆ') ? 'selected' : ''; ?>>อื่นๆ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>สัญชาติ</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="nationality" value="<?=$row['nationality'];?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>เลขบัตรประชาชน</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="id_card" value="<?=$row['id_card'];?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>อีเมล</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="text" name="email" value="<?=$row['email'];?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow valignTop">
+                        <div class="formTitle">
+                            <h4>ที่อยู่</h4>
+                        </div>
+                        <div class="formInput">
+                            <textarea name="address" readonly><?=$row['address'];?></textarea>
+                        </div>
+                    </div>
+                    <div class="headersection">
+                        <i class='bx bx-calendar-check'></i>
+                        <h4>ข้อมูลการจอง</h4>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>Check in <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="date" name="check_in_date" value="<?=$row['check_in_date'];?>" readonly required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>Check-out</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="date" name="check_out_date" value="<?=$row['check_out_date'];?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>ราคาห้องพัก <span class="force">*</span></h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="price" value="<?=$row['price'];?>" readonly required>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>วิธีการชำระเงิน</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <select name="payment" disabled>
+                                <option value="">-</option>
+                                <option value="เงินสด" <?php echo ($payment=='เงินสด') ? 'selected' : ''; ?>>เงินสด</option>
+                                <option value="โอนเงิน" <?php echo ($payment=='โอนเงิน') ? 'selected' : ''; ?>>โอนเงิน</option>
+                                <option value="บัตรเครดิต" <?php echo ($payment=='บัตรเครดิต') ? 'selected' : ''; ?>>บัตรเครดิต</option>
+                                <option value="อื่นๆ" <?php echo ($payment=='อื่นๆ') ? 'selected' : ''; ?>>อื่นๆ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formTitle">
+                            <h4>จำนวนผู้เข้าพัก</h4>
+                        </div>
+                        <div class="formInput w300">
+                            <input type="number" name="amountpeople" value="<?=$row['amountpeople'];?>" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow valignTop">
+                        <div class="formTitle">
+                            <h4>หมายเหตุ</h4>
+                        </div>
+                        <div class="formInput">
+                            <textarea name="remark" readonly><?=$row['remark'];?></textarea>
+                        </div>
+                    </div>
+                    <div class="formBtn">
+                        <button type="button" class="button gray w100" onclick="history.back()">ยกเลิก</button>
                     </div>
                 </div>
             </section>
