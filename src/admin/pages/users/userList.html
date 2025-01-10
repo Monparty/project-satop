@@ -45,9 +45,9 @@
                         <tr align="center">
                             <td><?=$count++;?></td>
                             <td align="left"><?=$fetch['username'];?></td>
-                            <td><?=$fetch['create_at'];?></td>
+                            <td><?=date_format(date_create($fetch['create_at']), 'd/m/Y H:i:s')?></td>
                             <td><?=$fetch['status'];?></td>
-                            <td align="left"><a title="แก้ไขข้อมูล" href="editUser.php?user_id=<?=$fetch['user_id'];?>"><i class='bx bx-edit-alt'></i></a></td>
+                            <td align="left"><a title="แก้ไขข้อมูล" href="editUser?user_id=<?=$fetch['user_id'];?>"><i class='bx bx-edit-alt'></i></a></td>
                             <td align="left"><a title="ลบรายการ" href="?delete=<?=$fetch['user_id'];?>"><i class='bx bx-trash'></i></a></td>
                         </tr>
                     <?php } ?>
