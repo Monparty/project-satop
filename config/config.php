@@ -1,15 +1,15 @@
 <?php
-$servername = "localhost";
+$servername = "centerbeam.proxy.rlwy.net:17587";
 $username = "root";
-$password = "";
-$dbname= "satop_db";
+$password = "DsZvTMivHfGyvevWqUfhohTsmBbSMsHr";
+$dbname= "railway";
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $c = mysqli_connect( "localhost", "root", "", "satop_db" );
+  $c = mysqli_connect( "centerbeam.proxy.rlwy.net:17587", "root", "DsZvTMivHfGyvevWqUfhohTsmBbSMsHr", "railway" );
   mysqli_query( $c, "SET NAMES UTF8" );
   //echo "Connected successfully";
 } catch(PDOException $e) {
